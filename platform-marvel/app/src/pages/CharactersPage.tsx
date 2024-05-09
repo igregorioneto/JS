@@ -1,3 +1,6 @@
+/**
+ * Página de Characters, listagem dos personagens da Marvel.
+*/
 function CharactersPage() {
     return (
         <>
