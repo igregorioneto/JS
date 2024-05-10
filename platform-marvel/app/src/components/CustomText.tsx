@@ -16,7 +16,6 @@ interface CustomTextProps {
 
 // Componente com StyledComponent para texto personalizado
 const StyledText = styled.div<CustomTextProps>`
-    position: absolute;
     font-family: 'Marvel';
     text-align: ${(props) => props.textAlign || 'left'};
     font-size: ${(props) => props.fontSize || '16px'};

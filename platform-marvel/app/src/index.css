@@ -2,3 +2,8 @@
     font-family: "Marvel";
     src: url('/app/public/fonts/marvel-font/MarvelRegular-Dj83.ttf') format('ttf');
 }
+
+* {
+    margin: 0;
+    padding: 0;
+}
