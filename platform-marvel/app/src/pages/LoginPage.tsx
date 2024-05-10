@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CustomText from '../components/CustomText';
+import { useNavigate } from 'react-router-dom';
 
 // Estilo para tela de login
 const LoginContainer = styled.div`
@@ -62,10 +63,14 @@ const Link = styled.a`
 function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     // Lógica do Login (validação, envio para o servidor, etc.)
     const handleLogin = () => {
         console.log('Login', { username, password });
+        if (username === 'user' && password === 'user') {
+            navigate('/characters');
+        }
     }
 
     return (
@@ -105,14 +110,14 @@ function LoginPage() {
                 type="text"
                 placeholder="Usuário"
                 value={username}
-                onChange={(e: any) => setUsername(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
             />
 
             <Input 
                 type="password"
                 placeholder="Senha"
                 value={password}
-                onChange={(e:any) => setPassword(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
             />
 
             <Options>

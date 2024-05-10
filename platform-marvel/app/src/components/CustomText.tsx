@@ -15,7 +15,9 @@ interface CustomTextProps {
 }
 
 // Componente com StyledComponent para texto personalizado
-const StyledText = styled.div<CustomTextProps>`
+const StyledText = styled.div.withConfig({
+    shouldForwardProp: (prop) => !['textAlign', 'fontSize', 'fontWeight', 'fontStyle', 'color', 'width', 'height'].includes(prop)
+})<CustomTextProps>`
     font-family: 'Marvel';
     text-align: ${(props) => props.textAlign || 'left'};
     font-size: ${(props) => props.fontSize || '16px'};
