@@ -1,0 +1,79 @@
+{
+    "users": [
+      { "id": 1, "username": "admin", "password": "admin" },
+      { "id": 2, "username": "user", "password": "user" }
+    ],
+    "marvel_characters": [
+      {
+        "id": 1,
+        "name": "Spider-Man",
+        "description": "Peter Parker, um adolescente com poderes de aranha.",
+        "image_id": "spider_man_image",
+        "appears_in": ["Spider-Man", "Avengers"],
+        "fan_rating": 4.8
+      },
+      {
+        "id": 2,
+        "name": "Iron Man",
+        "description": "Tony Stark, um bilionário inventor e filantropo.",
+        "image_id": "iron_man_image",
+        "appears_in": ["Iron Man", "Avengers", "Captain America: Civil War"],
+        "fan_rating": 4.9
+      },
+      {
+        "id": 3,
+        "name": "Captain America",
+        "description": "Steve Rogers, um super-soldado da Segunda Guerra Mundial.",
+        "image_id": "captain_america_image",
+        "appears_in": ["Captain America", "Avengers"],
+        "fan_rating": 4.7
+      }
+    ],
+    "marvel_movies": [
+      {
+        "id": 1,
+        "name": "Avengers: Endgame",
+        "description": "Os Vingadores enfrentam Thanos para restaurar o universo.",
+        "streaming_platform": "Disney+",
+        "critic_rating": 4.6
+      },
+      {
+        "id": 2,
+        "name": "Spider-Man: Homecoming",
+        "description": "Peter Parker equilibra a vida escolar e seu papel como super-herói.",
+        "streaming_platform": "Netflix",
+        "critic_rating": 4.4
+      },
+      {
+        "id": 3,
+        "name": "Iron Man",
+        "description": "Tony Stark constrói um traje para escapar de cativeiro.",
+        "streaming_platform": "Disney+",
+        "critic_rating": 4.5
+      }
+    ],
+    "marvel_comics": [
+      {
+        "id": 1,
+        "name": "The Amazing Spider-Man #1",
+        "description": "A primeira edição do Homem-Aranha.",
+        "store": "Comic Store",
+        "critic_rating": 4.9
+      },
+      {
+        "id": 2,
+        "name": "Iron Man #1",
+        "description": "A primeira edição do Homem de Ferro.",
+        "store": "Barnes & Noble",
+        "critic_rating": 4.8
+      },
+      {
+        "id": 3,
+        "name": "Captain America #1",
+        "description": "A primeira edição do Capitão América.",
+        "store": "Comic Store",
+        "critic_rating": 4.7
+      }
+    ]
+  }
+  
