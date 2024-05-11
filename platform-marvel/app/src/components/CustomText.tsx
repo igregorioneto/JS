@@ -29,7 +29,7 @@ const StyledText = styled.div.withConfig({
 `;
 
 // Componente React para texto com propriedades personalizáveis
-const CustomText: React.FC<CustomTextProps> = ({
+export default function CustomText({
     children,
     fontSize,
     fontWeight,
@@ -39,7 +39,7 @@ const CustomText: React.FC<CustomTextProps> = ({
     width,
     height,
     style
-}) => {
+}: CustomTextProps) {
     return (
         <StyledText
             fontSize={fontSize}
@@ -55,5 +55,3 @@ const CustomText: React.FC<CustomTextProps> = ({
         </StyledText>
     );
 };
-
-export default CustomText;
