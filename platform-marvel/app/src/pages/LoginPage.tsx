@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import CustomText from '../components/CustomText';
 import { useNavigate } from 'react-router-dom';
+import postLogin from '../services/UserService';
 
 // Estilo para tela de login
 const LoginContainer = styled.div`
@@ -66,10 +67,17 @@ function LoginPage() {
     const navigate = useNavigate();
 
     // Lógica do Login (validação, envio para o servidor, etc.)
-    const handleLogin = () => {
-        console.log('Login', { username, password });
-        if (username === 'user' && password === 'user') {
-            navigate('/characters');
+    const handleLogin = async () => {        
+        // if (username === 'user' && password === 'user') {
+        //     navigate('/characters');
+        // }
+        try {
+            const response = await postLogin({username, password});
+            if (response) {
+                navigate('/characters');
+            }
+        } catch (error) {
+            console.error('Erro ao fazer requisição na API.');
         }
     }
 
