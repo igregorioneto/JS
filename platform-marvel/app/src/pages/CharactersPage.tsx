@@ -15,9 +15,8 @@ function CharactersPage() {
                 const response = await getCharactersData();
                 if (response !== null) {
                     setCharacters(response);
-                    console.log(response);
                 } else {
-                    console.error('A respostam da API é nula.');
+                    console.error('A resposta da API é nula.');
                 }
             } catch (error) {
                 console.error('Erro ao obter dados dos personagens:', error);

@@ -1,7 +1,6 @@
-export interface CharacterType {
-    id?: number;
-    name: string;
-    description: string;
+import { BaseEntity } from "./BaseEntity";
+
+export interface CharacterType extends BaseEntity {
     image_id: string;
     appears_in: string[];
     fan_rating: number;
