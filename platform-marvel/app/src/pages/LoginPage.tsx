@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CustomText from '../components/CustomText';
 import { useNavigate } from 'react-router-dom';
@@ -65,6 +65,12 @@ function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem('userData');
+        if (token !== null)
+            localStorage.removeItem('userData');
+    });
 
     // Lógica do Login (validação, envio para o servidor, etc.)
     const handleLogin = async () => {        
