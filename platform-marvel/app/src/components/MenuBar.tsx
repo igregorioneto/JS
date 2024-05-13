@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import CustomText from './CustomText';
 
 import profile from '../assets/profile.png';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, redirect } from 'react-router-dom';
+import { useState } from 'react';
+import { removeFromLocalStorage } from '../utils/LocalStorage';
 
 // Container para o Menu
 const MenuBarContainer = styled.div`
@@ -33,7 +35,29 @@ const ProfilePicture = styled.img`
     border-radius: 50%; // Foto redonda
 `;
 
+// Estilo para o botão sair
+const LogoutButton = styled.button`
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+`;
+
 const MenuBar = () => {
+    const [showLogout, setShowLogout] = useState(false);
+
+    const toogleLogout = () => {
+        setShowLogout(!showLogout);
+    }
+
+    const logout = () => {
+        removeFromLocalStorage('userData');
+        window.location.reload();
+        redirect('/login');
+    }
+
     return (
         <MenuBarContainer>
             <CustomText
@@ -57,7 +81,11 @@ const MenuBar = () => {
                 <ProfilePicture
                     src={profile}
                     alt='Perfil'
+                    onClick={toogleLogout}
                 />
+                {showLogout && (
+                    <LogoutButton onClick={() => logout()} >Sair</LogoutButton>
+                )}
             </ProfileSelection>
         </MenuBarContainer>
     );
