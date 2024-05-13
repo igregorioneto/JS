@@ -1,4 +1,4 @@
-import { ComicType } from "../types/ComicType";
+import { ComicType } from "../domain/comic";
 
 export default async function getComicsData(): Promise<ComicType[]> {
     let comicsDataString = localStorage.getItem('comicsData');

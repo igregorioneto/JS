@@ -1,4 +1,4 @@
-import { UserType } from "../types/UserType";
+import { UserType } from "../domain/UserType";
 
 export default async function postLogin(user: UserType): Promise<any> {
     let userDataString = localStorage.getItem('userData');

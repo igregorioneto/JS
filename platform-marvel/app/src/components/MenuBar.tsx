@@ -4,7 +4,7 @@ import CustomText from './CustomText';
 import profile from '../assets/profile.png';
 import { Link, Navigate, redirect } from 'react-router-dom';
 import { useState } from 'react';
-import { removeFromLocalStorage } from '../utils/LocalStorage';
+import { removeFromLocalStorage } from '../utils/localStorage';
 
 // Container para o Menu
 const MenuBarContainer = styled.div`

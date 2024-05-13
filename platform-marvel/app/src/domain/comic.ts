@@ -1,4 +1,4 @@
-import { BaseEntity } from "./BaseEntity";
+import { BaseEntity } from "./base";
 
 export interface ComicType extends BaseEntity {
     store: string;

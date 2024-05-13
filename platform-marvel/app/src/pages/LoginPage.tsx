@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CustomText from '../components/CustomText';
 import { useNavigate } from 'react-router-dom';
-import postLogin from '../services/UserService';
-import { getFromLocalStorage, removeFromLocalStorage, saveToLocalStorage } from '../utils/LocalStorage';
+import postLogin from '../services/userService';
+import { getFromLocalStorage, removeFromLocalStorage, saveToLocalStorage } from '../utils/localStorage';
 
 // Estilo para tela de login
 const LoginContainer = styled.div`

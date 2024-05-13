@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import MenuBar from "../components/MenuBar"
-import { MovieType } from "../types/MovieType"
-import getMoviesData from "../services/MovieService";
-import { getFromLocalStorage } from "../utils/LocalStorage";
+import { MovieType } from "../domain/movie"
+import getMoviesData from "../services/movieService";
+import { getFromLocalStorage } from "../utils/localStorage";
 
 /**
  * Página de Movies, listagem dos personagens da Marvel.

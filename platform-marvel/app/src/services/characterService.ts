@@ -1,4 +1,4 @@
-import { CharacterType } from "../types/CharacterType";
+import { CharacterType } from "../domain/character";
 
 export default async function getCharactersData(): Promise<CharacterType[]> {
     let charactersDataString = localStorage.getItem('charactersData');

@@ -1,4 +1,4 @@
-import { BaseEntity } from "./BaseEntity";
+import { BaseEntity } from "./base";
 
 export interface CharacterType extends BaseEntity {
     image_id: string;

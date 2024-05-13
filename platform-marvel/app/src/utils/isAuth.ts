@@ -1,4 +1,4 @@
-import { getFromLocalStorage } from "./LocalStorage";
+import { getFromLocalStorage } from "./localStorage";
 
 export const isAuth = () => {
     var token = getFromLocalStorage('userData');

@@ -1,4 +1,4 @@
-import { MovieType } from "../types/MovieType";
+import { MovieType } from "../domain/movie";
 
 export default async function getMoviesData(typeMovie: string = ''): Promise<MovieType[]> {
     let movieDataString = localStorage.getItem('moviesData');
