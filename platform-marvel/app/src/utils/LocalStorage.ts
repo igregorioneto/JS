@@ -1,9 +1,9 @@
 // Salvar no localStorage
-const saveToLocalStorage = (key: string,value: any) => {
+export const saveToLocalStorage = (key: string,value: any) => {
     localStorage.setItem(key, value);
 };
 
 // Recuperar do localStorage
-const getFromLocalStorage = (key: string) => {
+export const getFromLocalStorage = (key: string) => {
     return localStorage.getItem(key);
 };
