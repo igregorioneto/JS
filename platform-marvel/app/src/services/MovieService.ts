@@ -1,6 +1,6 @@
 import { MovieType } from "../types/MovieType";
 
-export default async function getMoviesData(): Promise<MovieType[]> {
+export default async function getMoviesData(typeMovie: string = ''): Promise<MovieType[]> {
     let movieDataString = localStorage.getItem('moviesData');
     let movieData: MovieType[] = [];
     if (movieDataString) {
