@@ -35,21 +35,24 @@
         "name": "Avengers: Endgame",
         "description": "Os Vingadores enfrentam Thanos para restaurar o universo.",
         "streaming_platform": "Disney+",
-        "critic_rating": 4.6
+        "critic_rating": 4.6,
+        "type_launch": "chronology"
       },
       {
         "id": 2,
         "name": "Spider-Man: Homecoming",
         "description": "Peter Parker equilibra a vida escolar e seu papel como super-herói.",
         "streaming_platform": "Netflix",
-        "critic_rating": 4.4
+        "critic_rating": 4.4,
+        "type_launch": "launch"
       },
       {
         "id": 3,
         "name": "Iron Man",
         "description": "Tony Stark constrói um traje para escapar de cativeiro.",
         "streaming_platform": "Disney+",
-        "critic_rating": 4.5
+        "critic_rating": 4.5,
+        "type_launch": "chronology"
       }
     ],
     "marvel_comics": [
