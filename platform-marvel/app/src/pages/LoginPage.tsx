@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CustomText from '../components/CustomText';
 import { useNavigate } from 'react-router-dom';
 import postLogin from '../services/UserService';
+import { getFromLocalStorage, removeFromLocalStorage, saveToLocalStorage } from '../utils/LocalStorage';
 
 // Estilo para tela de login
 const LoginContainer = styled.div`
@@ -64,27 +65,58 @@ const Link = styled.a`
 function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [saveLogin, setSaveLogin] = useState(false);
+
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = localStorage.getItem('userData');
-        if (token !== null)
-            localStorage.removeItem('userData');
-    });
+        // const token = localStorage.getItem('userData');
+        // if (token !== null)
+        //     localStorage.removeItem('userData');
+        
+        // let saveLoginString = getFromLocalStorage('saveData');
+        // if (saveLoginString)
+        //     setSaveLogin(Boolean(JSON.parse(saveLoginString)));
+        const savedLogin = getFromLocalStorage('saveData');
+        if (savedLogin) {
+            setSaveLogin(true);
+            const savedUsername = getFromLocalStorage('username');
+            const savedPassword = getFromLocalStorage('password');
+            if (savedUsername && savedPassword) {
+                setUsername(savedUsername);
+                setPassword(savedPassword);
+                handleLogin(savedUsername, savedPassword);
+            }
+        }
+    }, []);
 
     // Lógica do Login (validação, envio para o servidor, etc.)
-    const handleLogin = async () => {        
-        // if (username === 'user' && password === 'user') {
-        //     navigate('/characters');
-        // }
+    const handleLogin = async (user: string, pass: string) => {     
         try {
-            const response = await postLogin({username, password});
+            const response = await postLogin({username: user || username, password: pass || password});
             if (response) {
                 navigate('/characters');
+                if (saveLogin) {
+                    saveToLocalStorage('username', username);
+                    saveToLocalStorage('password', password);
+                }
             }
         } catch (error) {
             console.error('Erro ao fazer requisição na API.');
         }
+    }
+
+    const toggleSaveLogin = () => {
+        let newValue = !saveLogin;
+        setSaveLogin(newValue);
+
+        if (!newValue) {
+            removeFromLocalStorage('username');
+            removeFromLocalStorage('password');
+        }
+
+        saveToLocalStorage('saveData', newValue);
+        
     }
 
     return (
@@ -136,13 +168,13 @@ function LoginPage() {
 
             <Options>
                 <label>
-                    <input type='checkbox' />
+                    <input type='checkbox' checked={saveLogin} onChange={toggleSaveLogin} />
                     Salvar Login
                 </label>
                 <Link>Esqueceu a senha?</Link>
             </Options>
 
-            <Button onClick={handleLogin}>Entrar</Button>
+            <Button onClick={() => handleLogin(username, password)}>Entrar</Button>
 
             <CustomText
                 fontSize="14px"

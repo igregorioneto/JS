@@ -54,6 +54,8 @@ const MenuBar = () => {
 
     const logout = () => {
         removeFromLocalStorage('userData');
+        removeFromLocalStorage('username');
+        removeFromLocalStorage('password');
         window.location.reload();
         redirect('/login');
     }
