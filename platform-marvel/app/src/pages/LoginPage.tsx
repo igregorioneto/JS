@@ -9,11 +9,11 @@ import { getFromLocalStorage, removeFromLocalStorage, saveToLocalStorage } from 
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; /* Alinhar à esquerda */
   justify-content: center;
   height: 100vh;
   background-color: #333; // Cor de fundo
-  position: relative;  
+  padding-left: 20px; /* Adiciona algum espaço à esquerda */  
 `;
 
 // Campo de entrada para formulário
@@ -23,13 +23,17 @@ const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  width: 250px;
+  width: calc(100% - 20px);
+  max-width: 300px;
 `;
 
 // Estilo para o botão de login
 const Button = styled.button`
-  padding: 10px 20px;
-  background-color: #0066ff;
+  width: 100%;
+  max-width: 320px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #ff0000;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -45,9 +49,9 @@ const Button = styled.button`
 const Options = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: calc(100% - 20px);
   max-width: 300px;
-  margin: 10px 0;
+  margin: 20px 10px;
 `;
 
 const Link = styled.a`
@@ -70,13 +74,6 @@ function LoginPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // const token = localStorage.getItem('userData');
-        // if (token !== null)
-        //     localStorage.removeItem('userData');
-        
-        // let saveLoginString = getFromLocalStorage('saveData');
-        // if (saveLoginString)
-        //     setSaveLogin(Boolean(JSON.parse(saveLoginString)));
         const savedLogin = getFromLocalStorage('saveData');
         if (savedLogin) {
             setSaveLogin(true);
@@ -125,20 +122,20 @@ function LoginPage() {
                 fontSize="100px"
                 fontWeight="normal"
                 color="#ffffff"
-                width="411px"
                 height="113px"
                 textAlign="left"
-                style={{ position: 'absolute', top: '10px', left: '10px' }}
+                style={{ marginBottom: '20px', width: '80vw', maxWidth: '300px' }}
+                rectangle={true}
             >
-                Márvel
+                Marvel
             </CustomText>
 
             <CustomText
                 fontSize="24px"
                 fontWeight="normal"
-                color="#ffffff"
+                color="#ff0000"
                 textAlign="center"
-                style={{ marginBottom: '20px' }}
+                style={{ marginBottom: '10px', width: '80vw', maxWidth: '300px' }}
             >
                 Bem-vindo(a) de volta!
             </CustomText>
@@ -148,6 +145,7 @@ function LoginPage() {
                 fontWeight="normal"
                 color="#ffffff"
                 textAlign="center"
+                style={{ marginBottom: '20px', width: '80vw', maxWidth: '300px' }}
             >
                 Acesse sua conta!
             </CustomText>
@@ -167,8 +165,8 @@ function LoginPage() {
             />
 
             <Options>
-                <label>
-                    <input type='checkbox' checked={saveLogin} onChange={toggleSaveLogin} />
+                <label style={{color: '#ffffff'}}>
+                    <input style={{marginRight: '10px'}} type='checkbox' checked={saveLogin} onChange={toggleSaveLogin} />
                     Salvar Login
                 </label>
                 <Link>Esqueceu a senha?</Link>
@@ -180,9 +178,9 @@ function LoginPage() {
                 fontSize="14px"
                 color="#ffffff"
                 textAlign="center"
-                style={{ marginTop: '20px' }}
+                style={{ marginTop: '10px', width: '80vw', maxWidth: '300px' }}
             >
-                Ainda não tem login? <Link>Cadastre-se</Link>
+                Ainda não tem login? <Link style={{color: '#ff0000'}} >Cadastre-se</Link>
             </CustomText>
         </LoginContainer>
     )
