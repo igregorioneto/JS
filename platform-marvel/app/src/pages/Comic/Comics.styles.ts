@@ -11,7 +11,8 @@ export const Container = styled.div`
   background-size: cover;
   position: relative;
   overflow: hidden;
-  background-color: #000000;  
+  background-color: #000000; 
+  z-index: -1; 
 
   color: #fff;
 
