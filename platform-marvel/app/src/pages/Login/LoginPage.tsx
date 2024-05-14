@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CustomText from '../../components/CustomText';
+import CustomText from '../../components/CustomText/CustomText';
 import { useNavigate } from 'react-router-dom';
 import postLogin from '../../services/userService';
 import { getFromLocalStorage, removeFromLocalStorage, saveToLocalStorage } from '../../utils/localStorage';
@@ -68,6 +68,8 @@ function LoginPage() {
                 textAlign="left"
                 style={{ marginLeft: '10vw' ,marginBottom: '20px', width: '80vw', maxWidth: '300px' }}
                 rectangle={true}
+                rectangeMaxHeight='8vw'
+                rectangeMaxWidth='15vw'
             >
                 Marvel
             </CustomText>

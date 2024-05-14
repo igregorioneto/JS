@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import CustomText from "../../components/CustomText";
+import CustomText from "../../components/CustomText/CustomText";
 import { useNavigate } from "react-router-dom";
 import { Container } from "./SplashScreen.styles";
 
@@ -28,6 +28,8 @@ function SplashScreenPage() {
                 height="113px"
                 textAlign="left"
                 rectangle={true}
+                rectangeMaxHeight='8vw'
+                rectangeMaxWidth='15vw'
                 style={{ marginLeft: '20vw' }}
             >
                 Marvel

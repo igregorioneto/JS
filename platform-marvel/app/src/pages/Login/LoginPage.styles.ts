@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import backgroundImage from '../../assets/background.png';
 
 // Estilo para tela de login
 export const LoginContainer = styled.div`
@@ -6,9 +7,19 @@ export const LoginContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  height: 100vh;
-  background-color: #000;
-  padding-left: 20vw;
+  height: 100vh;  
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  background-color: #000000;  
+
+  @media (min-width: 700px) {
+    background: linear-gradient(89deg, 
+    #000000 0.00%, 
+    rgba(33,33,33,0.74 ) 67.44%, 
+    rgba(128,128,128,0 ) 100.00%),
+    url(${backgroundImage}) no-repeat right center;
+  }
 
   @media (max-width: 1200px) {
     padding-left: 15vw;

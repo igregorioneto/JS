@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import MenuBar from "../../components/MenuBar"
+import MenuBar from "../../components/MenuBar/MenuBar"
 import getCharactersData from "../../services/characterService";
 import { CharacterType } from "../../domain/character";
+import { Container } from "./Characters.styles";
 
 /**
  * Página de Characters, listagem dos personagens da Marvel.
@@ -30,7 +31,7 @@ function CharactersPage() {
         <>
             <MenuBar />
             
-            <div>
+            <Container>
                 <h2>Personagens</h2>
                 <ul style={{ listStyleType: 'none', padding: 0, display: 'flex' }}>
                     {characters.map((character: CharacterType) => (
@@ -39,7 +40,7 @@ function CharactersPage() {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </Container>
         </>
     )
 }

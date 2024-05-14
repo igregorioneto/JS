@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MenuBar from "../../components/MenuBar"
+import MenuBar from "../../components/MenuBar/MenuBar"
 import { MovieType } from "../../domain/movie"
 import getMoviesData from "../../services/movieService";
 import { getFromLocalStorage } from "../../utils/localStorage";

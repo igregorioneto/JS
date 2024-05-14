@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import MenuBar from "../../components/MenuBar"
+import MenuBar from "../../components/MenuBar/MenuBar"
 import { ComicType } from "../../domain/comic"
 import getComicsData from "../../services/comicService";
 
