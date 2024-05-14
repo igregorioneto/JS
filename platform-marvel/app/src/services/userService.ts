@@ -6,7 +6,6 @@ export default async function postLogin(user: UserType): Promise<any> {
     if (userDataString) {
         userData = JSON.parse(userDataString);
     } else {
-        console.log(user.username, user.password)
         const response = await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {

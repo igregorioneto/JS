@@ -37,7 +37,6 @@ function MoviesPage() {
         if (moviesString) {
             let movies: MovieType[] = JSON.parse(moviesString);
             let filteredMovies = selectType ? movies.filter(movie => movie.type_launch === selectType) : movies;
-            console.log(filteredMovies);
             setMovies(filteredMovies);            
         } else {
             console.error(`Não foram encontrados filmes do tipo: ${selectType}`);

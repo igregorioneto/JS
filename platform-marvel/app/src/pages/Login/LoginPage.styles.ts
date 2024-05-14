@@ -11,7 +11,7 @@ export const LoginContainer = styled.div`
   background-size: cover;
   position: relative;
   overflow: hidden;
-  background-color: #000000;  
+  background-color: #000000;
 
   @media (min-width: 700px) {
     background: linear-gradient(89deg, 

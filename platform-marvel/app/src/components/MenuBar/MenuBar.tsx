@@ -1,10 +1,10 @@
 import CustomText from '../CustomText/CustomText';
 
 import profile from '../../assets/profile.png';
-import { Link, redirect } from 'react-router-dom';
+import {  redirect } from 'react-router-dom';
 import { useState } from 'react';
 import { removeFromLocalStorage } from '../../utils/localStorage';
-import { LogoutButton, MenuBarContainer, MenuOptions, ProfilePicture, ProfileSelection } from './MenuBar.styles';
+import { LogoutButton, MenuBarContainer, MenuOptions, ModalContent, ProfilePicture, ProfileSelection } from './MenuBar.styles';
 import Navbar from '../Nav/Nav';
 
 const MenuBar = () => {
@@ -12,6 +12,11 @@ const MenuBar = () => {
 
     const toogleLogout = () => {
         setShowLogout(!showLogout);
+    }
+
+    const handleLogout = () => {
+        logout();
+        setShowLogout(false);
     }
 
     const logout = () => {
@@ -47,7 +52,9 @@ const MenuBar = () => {
                     onClick={toogleLogout}
                 />
                 {showLogout && (
-                    <LogoutButton onClick={() => logout()} >Sair</LogoutButton>
+                    <ModalContent onClick={e => e.stopPropagation()}>
+                        <LogoutButton onClick={handleLogout} >Sair</LogoutButton>
+                    </ModalContent>
                 )}
             </ProfileSelection>
         </MenuBarContainer>
