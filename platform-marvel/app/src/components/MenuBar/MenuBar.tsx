@@ -5,6 +5,7 @@ import { Link, redirect } from 'react-router-dom';
 import { useState } from 'react';
 import { removeFromLocalStorage } from '../../utils/localStorage';
 import { LogoutButton, MenuBarContainer, MenuOptions, ProfilePicture, ProfileSelection } from './MenuBar.styles';
+import Navbar from '../Nav/Nav';
 
 const MenuBar = () => {
     const [showLogout, setShowLogout] = useState(false);
@@ -27,8 +28,6 @@ const MenuBar = () => {
                 fontSize="50px"
                 fontWeight="normal"
                 color="#ffffff"
-                width="206px"
-                height="36px"
                 textAlign="left"
                 rectangle={true}
                 rectangeMaxHeight='45px'
@@ -38,9 +37,7 @@ const MenuBar = () => {
             </CustomText>
 
             <MenuOptions>
-                <Link to='/characters'>Personagens</Link>
-                <Link to='/movies'>Filmes</Link>
-                <Link to='/comics'>HQs</Link>
+                <Navbar />
             </MenuOptions>
 
             <ProfileSelection>

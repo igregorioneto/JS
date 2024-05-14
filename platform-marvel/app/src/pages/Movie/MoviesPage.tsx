@@ -3,6 +3,7 @@ import MenuBar from "../../components/MenuBar/MenuBar"
 import { MovieType } from "../../domain/movie"
 import getMoviesData from "../../services/movieService";
 import { getFromLocalStorage } from "../../utils/localStorage";
+import { Container } from "./Movies.styles";
 
 /**
  * Página de Movies, listagem dos personagens da Marvel.
@@ -48,7 +49,7 @@ function MoviesPage() {
         <>
             <MenuBar />
             
-            <div>
+            <Container>
                 <h2>Filmes</h2>
                 <select id="mySelector" value={typeMovie} onChange={handleChangeType}>
                     <option value=''>Filtrar por</option>
@@ -62,7 +63,7 @@ function MoviesPage() {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </Container>
         </>
     )
 }

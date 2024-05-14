@@ -8,6 +8,8 @@ export const MenuBarContainer = styled.div`
     padding: 10px 20px; // Espaçamento interno
     background-color: #333; // Cor de fundo
     color: #ffffff; // Cor do texto
+    filter: drop-shadow(0px 3px 3px rgba(255,0,0,0.53 ));
+    background: #000000;
 `;
 
 export const MenuOptions = styled.div`

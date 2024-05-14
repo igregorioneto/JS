@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import MenuBar from "../../components/MenuBar/MenuBar"
 import { ComicType } from "../../domain/comic"
 import getComicsData from "../../services/comicService";
+import { Container } from "./Comics.styles";
 
 /**
  * Página de Comics, listagem dos personagens da Marvel.
@@ -29,7 +30,7 @@ function ComicsPage() {
         <>
             <MenuBar />
             
-            <div>
+            <Container>
                 <h2>HQs</h2>
                 <ul style={{ listStyleType: 'none', padding: 0, display: 'flex' }}>
                     {comics.map((comic: ComicType) => (
@@ -38,7 +39,7 @@ function ComicsPage() {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </Container>
         </>
     )
 }
