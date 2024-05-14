@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import MenuBar from "../components/MenuBar"
-import { ComicType } from "../domain/comic"
-import getComicsData from "../services/comicService";
+import MenuBar from "../../components/MenuBar"
+import { ComicType } from "../../domain/comic"
+import getComicsData from "../../services/comicService";
 
 /**
  * Página de Comics, listagem dos personagens da Marvel.

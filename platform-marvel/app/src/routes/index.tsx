@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import CharactersPage from "../pages/CharactersPage";
-import MoviesPage from "../pages/MoviesPage";
-import ComicsPage from "../pages/ComicsPage";
-import LoginPage from "../pages/LoginPage";
-import SplashScreenPage from "../pages/SplashScreenPage";
+import CharactersPage from "../pages/Character/CharactersPage";
+import MoviesPage from "../pages/Movie/MoviesPage";
+import ComicsPage from "../pages/Comic/ComicsPage";
+import LoginPage from "../pages/Login/LoginPage";
+import SplashScreenPage from "../pages/SplashScreen/SplashScreenPage";
 import { PrivateRoute } from "./privateRoute";
 
 export const Rotas = () => {

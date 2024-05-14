@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import CustomText from './CustomText';
 
 import profile from '../assets/profile.png';
-import { Link, Navigate, redirect } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import { useState } from 'react';
 import { removeFromLocalStorage } from '../utils/localStorage';
 

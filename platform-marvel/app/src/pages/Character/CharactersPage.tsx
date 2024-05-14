@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import MenuBar from "../components/MenuBar"
-import getCharactersData from "../services/characterService";
-import { CharacterType } from "../domain/character";
+import MenuBar from "../../components/MenuBar"
+import getCharactersData from "../../services/characterService";
+import { CharacterType } from "../../domain/character";
 
 /**
  * Página de Characters, listagem dos personagens da Marvel.
