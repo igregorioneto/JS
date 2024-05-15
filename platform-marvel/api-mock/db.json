@@ -45,7 +45,7 @@
         "streaming_platform": ["disney"],
         "critic_rating": 3,
         "type_launch": "chronology",
-        "image_id": "iron_man_1_image.png"
+        "image_id": "iron_man_1_image"
       },
       {
         "id": 2,
@@ -54,7 +54,7 @@
         "streaming_platform": ["disney"],
         "critic_rating": 4,
         "type_launch": "chronology",
-        "image_id": "iron_man_2_image.png"
+        "image_id": "iron_man_2_image"
       },
       {
         "id": 3,
@@ -63,7 +63,7 @@
         "streaming_platform": ["disney"],
         "critic_rating": 4,
         "type_launch": "chronology",
-        "image_id": "thor_image.png"
+        "image_id": "thor_image"
       },
       {
         "id": 4,
@@ -72,7 +72,7 @@
         "streaming_platform": ["disney"],
         "critic_rating": 4,
         "type_launch": "launch",
-        "image_id": "captain_america_image.png"
+        "image_id": "captain_america_image"
       },
       {
         "id": 5,
@@ -81,7 +81,7 @@
         "streaming_platform": ["disney"],
         "critic_rating": 4,
         "type_launch": "launch",
-        "image_id": "captain_marvel_image.png"
+        "image_id": "captain_marvel_image"
       }
     ],
     "marvel_comics": [
@@ -91,7 +91,7 @@
         "description": "A origem do herói.",
         "store": ["americanas"],
         "critic_rating": 4,
-        "image_id": "hq_origem.png"
+        "image_id": "hq_origem"
       },
       {
         "id": 2,
@@ -99,7 +99,7 @@
         "description": "A jornada do Surfista Prateado.",
         "store": ["amazon", "americanas"],
         "critic_rating": 5,
-        "image_id": "hq_surfista.png"
+        "image_id": "hq_surfista"
       },
       {
         "id": 3,
@@ -107,7 +107,7 @@
         "description": "As aventuras do Deus do Trovão.",
         "store": ["amazon"],
         "critic_rating": 4,
-        "image_id": "hq_thor.png"
+        "image_id": "hq_thor"
       }
     ]
   }
