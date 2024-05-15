@@ -84,6 +84,8 @@ function MoviesPage() {
             setMovies(filteredMovies);
         } else {
             console.error(`Não foram encontrados filmes do tipo: ${selectType}`);
+            setShowError(true);
+            setMessageError(`Não foram encontrados filmes do tipo: ${selectType}`);
         }
     }
 
