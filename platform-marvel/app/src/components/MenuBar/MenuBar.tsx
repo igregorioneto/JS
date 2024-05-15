@@ -1,11 +1,12 @@
 import CustomText from '../CustomText/CustomText';
 
 import profile from '../../assets/profile.png';
-import {  redirect } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import { useState } from 'react';
 import { removeFromLocalStorage } from '../../utils/localStorage';
 import { LogoutButton, MenuBarContainer, MenuOptions, ModalContent, ProfilePicture, ProfileSelection } from './MenuBar.styles';
 import Navbar from '../Nav/Nav';
+import { Modal, Button } from "react-bootstrap";
 
 const MenuBar = () => {
     const [showLogout, setShowLogout] = useState(false);
@@ -18,6 +19,8 @@ const MenuBar = () => {
         logout();
         setShowLogout(false);
     }
+
+    const handleClose = () => setShowLogout(false);
 
     const logout = () => {
         removeFromLocalStorage('userData');
@@ -51,12 +54,25 @@ const MenuBar = () => {
                     alt='Perfil'
                     onClick={toogleLogout}
                 />
-                {showLogout && (
-                    <ModalContent onClick={e => e.stopPropagation()}>
-                        <LogoutButton onClick={handleLogout} >Sair</LogoutButton>
-                    </ModalContent>
-                )}
             </ProfileSelection>
+
+            {/* Botão modal */}
+            <Modal show={showLogout} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirmação de Logout</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Tem certeza que deseja sair?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Cancelar
+                    </Button>
+                    <Button variant="primary" onClick={handleLogout}>
+                        Sair
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </MenuBarContainer>
     );
 };
