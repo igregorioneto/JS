@@ -12,7 +12,6 @@ export const Container = styled.div`
   position: relative;
   overflow: hidden;
   background-color: #000000; 
-  z-index: -1; 
 
   color: #fff;
 
