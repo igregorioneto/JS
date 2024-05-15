@@ -3,8 +3,8 @@ import MenuBar from "../../components/MenuBar/MenuBar"
 import { ComicType } from "../../domain/comic"
 import getComicsData from "../../services/comicService";
 import { Container } from "./Comics.styles";
-import { CardList } from "../../components/CardList/CardList";
-import { Carousel } from "react-bootstrap";
+import { CarouselList } from "../../components/CarouselList/CarouselList";
+import { ModalInfo } from "../../components/ModalInfo/ModalInfo";
 
 /**
  * Página de Comics, listagem dos personagens da Marvel.
@@ -12,6 +12,8 @@ import { Carousel } from "react-bootstrap";
 function ComicsPage() {
     const [comics, setComics] = useState<ComicType[]>([]);
     const [images, setImages] = useState<{ [key: string]: string }>({});
+    const [showError, setShowError] = useState<boolean>(false);
+    const [messageError, setMessageError] = useState<string>('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,9 +32,13 @@ function ComicsPage() {
                     setImages(imagesMap);
                 } else {
                     console.error('A resposta da API é nula.')
+                    setShowError(true);
+                    setMessageError('A resposta da API é nula.');
                 }
             } catch (error) {
                 console.error('Erro ao obter dados dos Quadrinhos:', error);
+                setShowError(true);
+                setMessageError('Erro ao obter dados dos Quadrinhos.');
             }
         };
         fetchData();
@@ -43,40 +49,24 @@ function ComicsPage() {
             <MenuBar />
 
             <Container>
-                <div className="row justify-content-center">
-                    <div className="col-md-12" style={{ width: '100vw' }}>
-                        <Carousel
-                            interval={null}
-                            prevIcon={null}
-                            prevLabel={null}
-                            indicators={null}
-                        >
-                            {comics.reduce((slides: JSX.Element[], comic: ComicType, index: number) => {
-                                if (index % 3 === 0) {
-                                    const comicInGroup = comics.slice(index, index + 3);
-                                    slides.push(
-                                        <Carousel.Item key={index}>
-                                            <div className="d-flex justify-content-center">
-                                                {comicInGroup.map((comicInGroup) => (
-                                                    <div key={comicInGroup.id} style={{ marginRight: '10px' }}>
-                                                        <CardList
-                                                            name={comicInGroup.name}
-                                                            description={comicInGroup.description}
-                                                            backgroundImage={images[comicInGroup.image_id] || ''}
-                                                            info={comicInGroup.store}
-                                                            avaliations={comicInGroup.critic_rating}
-                                                        />
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </Carousel.Item>
-                                    );
-                                }
-                                return slides;
-                            }, [])}
-                        </Carousel>
-                    </div>
-                </div>
+                {/* Listagem em formato de Carousel */}
+                <CarouselList propList={comics} images={images} />
+
+                {
+                    showError ? (
+                        < ModalInfo
+                            title='Erro de carregamento'
+                            body={messageError}
+                            show={showError}
+                            isButtonPrimary={false}
+                            colorPrimary='primary'
+                            colorSecondary='secondary'
+                            titleButtonPrimary='Sair'
+                            titleButtonSecondary='Fechar'
+                            onHide={() => setShowError(false)}
+                        />
+                    ) : <></>
+                }
             </Container>
         </>
     )

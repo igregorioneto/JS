@@ -5,10 +5,9 @@ import getMoviesData from "../../services/movieService";
 import { getFromLocalStorage } from "../../utils/localStorage";
 import { Container } from "./Movies.styles";
 import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import { CardList } from "../../components/CardList/CardList";
-import { Carousel } from "react-bootstrap";
-
 import { styled } from '@mui/system';
+import { CarouselList } from "../../components/CarouselList/CarouselList";
+import { ModalInfo } from "../../components/ModalInfo/ModalInfo";
 
 const StyledSelect = styled(Select)(({ theme }) => ({
     position: 'absolute',
@@ -41,6 +40,8 @@ function MoviesPage() {
     const [movies, setMovies] = useState<MovieType[]>([]);
     const [typeMovie, setTypeMovie] = useState('');
     const [images, setImages] = useState<{ [key: string]: string }>({});
+    const [showError, setShowError] = useState<boolean>(false);
+    const [messageError, setMessageError] = useState<string>('');
 
     const fetchData = async () => {
         try {
@@ -58,9 +59,13 @@ function MoviesPage() {
                 setImages(imagesMap);
             } else {
                 console.error('A resposta da API é nula.');
+                setShowError(true);
+                setMessageError('A resposta da API é nula.');
             }
         } catch (error) {
             console.error('Erro ao obter dados dos Filmes:', error);
+            setShowError(true);
+            setMessageError('Erro ao obter dados dos Filmes');
         }
     }
 
@@ -102,40 +107,26 @@ function MoviesPage() {
                     <MenuItem value="chronology">Cronologia</MenuItem>
                 </StyledSelect>
 
-                <div className="row justify-content-center">
-                    <div className="col-md-12" style={{ width: '100vw' }}>
-                        <Carousel
-                            interval={null}
-                            prevIcon={null}
-                            prevLabel={null}
-                            indicators={null}
-                        >
-                            {movies.reduce((slides: JSX.Element[], movie: MovieType, index: number) => {
-                                if (index % 3 === 0) {
-                                    const moviesInGroup = movies.slice(index, index + 3);
-                                    slides.push(
-                                        <Carousel.Item key={index}>
-                                            <div className="d-flex justify-content-center">
-                                                {moviesInGroup.map((movieInGroup) => (
-                                                    <div key={movieInGroup.id} style={{marginRight:'10px'}}>
-                                                        <CardList
-                                                            name={movieInGroup.name}
-                                                            description={movieInGroup.description}
-                                                            backgroundImage={images[movieInGroup.image_id] || ""}
-                                                            info={movieInGroup.streaming_platform}
-                                                            avaliations={movieInGroup.critic_rating}
-                                                        />
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </Carousel.Item>
-                                    );
-                                }
-                                return slides;
-                            }, [])}
-                        </Carousel>
-                    </div>
-                </div>
+                {/* Listagem em formato de Carousel */}
+                <CarouselList propList={movies} images={images} />
+
+
+                {
+                    showError ? (
+                        < ModalInfo
+                            title='Erro de carregamento'
+                            body={messageError}
+                            show={showError}
+                            isButtonPrimary={false}
+                            colorPrimary='primary'
+                            colorSecondary='secondary'
+                            titleButtonPrimary='Sair'
+                            titleButtonSecondary='Fechar'
+                            onHide={() => setShowError(false)}
+                        />
+                    ) : <></>
+                }
+
             </Container>
         </>
     )

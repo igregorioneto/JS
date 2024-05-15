@@ -1,7 +1,8 @@
 import { UserType } from "../domain/user";
+import { getFromLocalStorage, saveToLocalStorage } from "../utils/localStorage";
 
 export default async function postLogin(user: UserType): Promise<any> {
-    let userDataString = localStorage.getItem('userData');
+    let userDataString = getFromLocalStorage('userData');
     let userData: string;
     if (userDataString) {
         userData = JSON.parse(userDataString);
@@ -14,11 +15,10 @@ export default async function postLogin(user: UserType): Promise<any> {
             body: JSON.stringify(user)
         });
         if (response.status === 401 || response.status === 500) {
-            console.error(response.body);
             return false;
         }
         userData = await response.json();
-        localStorage.setItem('userData', JSON.stringify(userData));
+        saveToLocalStorage('userData', JSON.stringify(userData));
     }
 
     return true;

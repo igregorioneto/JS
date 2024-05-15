@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import backgroundImage from '../../assets/background.png';
 
+
 // Estilo para tela de login
 export const Container = styled.div`
   display: flex;

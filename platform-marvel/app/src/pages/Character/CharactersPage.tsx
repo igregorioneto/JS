@@ -3,8 +3,8 @@ import MenuBar from "../../components/MenuBar/MenuBar"
 import getCharactersData from "../../services/characterService";
 import { CharacterType } from "../../domain/character";
 import { Container } from "./Characters.styles";
-import { CardList } from "../../components/CardList/CardList";
-import { Carousel } from "react-bootstrap";
+import { CarouselList } from "../../components/CarouselList/CarouselList";
+import { ModalInfo } from "../../components/ModalInfo/ModalInfo";
 
 /**
  * Página de Characters, listagem dos personagens da Marvel.
@@ -12,6 +12,8 @@ import { Carousel } from "react-bootstrap";
 function CharactersPage() {
     const [characters, setCharacters] = useState<CharacterType[]>([]);
     const [images, setImages] = useState<{ [key: string]: string }>({});
+    const [showError, setShowError] = useState<boolean>(false);
+    const [messageError, setMessageError] = useState<string>('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,9 +32,13 @@ function CharactersPage() {
                     setImages(imagesMap);
                 } else {
                     console.error('A resposta da API é nula.');
+                    setShowError(true);
+                    setMessageError('A resposta da API é nula.');
                 }
             } catch (error) {
                 console.error('Erro ao obter dados dos personagens:', error);
+                setShowError(true);
+                    setMessageError('Erro ao obter dados dos personagens');
             }
         }
 
@@ -44,40 +50,24 @@ function CharactersPage() {
             <MenuBar />
 
             <Container>
-                <div className="row justify-content-center">
-                    <div className="col-md-12" style={{ width: '100vw' }}>
-                        <Carousel
-                            interval={null}
-                            prevIcon={null}
-                            prevLabel={null}
-                            indicators={null}
-                        >
-                            {characters.reduce((slides: JSX.Element[], character: CharacterType, index: number) => {
-                                if (index % 3 === 0) {
-                                    const characterInGroup = characters.slice(index, index + 3);
-                                    slides.push(
-                                        <Carousel.Item key={index}>
-                                            <div className="d-flex justify-content-center">
-                                                {characterInGroup.map((characterInGroup) => (
-                                                    <div key={characterInGroup.id} style={{ marginRight: '10px' }}>
-                                                        <CardList
-                                                            name={characterInGroup.name}
-                                                            description={characterInGroup.description}
-                                                            backgroundImage={images[characterInGroup.image_id] || ''}
-                                                            info={characterInGroup.appears_in}
-                                                            avaliations={characterInGroup.fan_rating}
-                                                        />
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </Carousel.Item>
-                                    );
-                                }
-                                return slides;
-                            }, [])}
-                        </Carousel>
-                    </div>
-                </div>
+                {/* Listagem em formato de Carousel */}
+                <CarouselList propList={characters} images={images} />
+
+                {
+                showError ? (
+                    < ModalInfo
+                        title='Erro de carregamento'
+                        body={messageError}
+                        show={showError}
+                        isButtonPrimary={false}
+                        colorPrimary='primary'
+                        colorSecondary='secondary'
+                        titleButtonPrimary='Sair'
+                        titleButtonSecondary='Fechar'
+                        onHide={() => setShowError(false)}
+                    />
+                ) : <></>
+            }
             </Container>
         </>
     )

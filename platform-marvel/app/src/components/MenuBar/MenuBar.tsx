@@ -7,6 +7,7 @@ import { removeFromLocalStorage } from '../../utils/localStorage';
 import { LogoutButton, MenuBarContainer, MenuOptions, ModalContent, ProfilePicture, ProfileSelection } from './MenuBar.styles';
 import Navbar from '../Nav/Nav';
 import { Modal, Button } from "react-bootstrap";
+import { ModalInfo } from '../ModalInfo/ModalInfo';
 
 const MenuBar = () => {
     const [showLogout, setShowLogout] = useState(false);
@@ -57,22 +58,18 @@ const MenuBar = () => {
             </ProfileSelection>
 
             {/* Botão modal */}
-            <Modal show={showLogout} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Confirmação de Logout</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    Tem certeza que deseja sair?
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={handleLogout}>
-                        Sair
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <ModalInfo 
+                title='Confirmação de Logout'
+                body='Tem certeza que deseja sair?'
+                show={showLogout}
+                isButtonPrimary={true}
+                colorPrimary='primary'
+                colorSecondary='secondary'
+                titleButtonPrimary='Sair'
+                titleButtonSecondary='Cancelar'
+                onHide={handleClose}
+                onClick={handleLogout}
+            />
         </MenuBarContainer>
     );
 };
