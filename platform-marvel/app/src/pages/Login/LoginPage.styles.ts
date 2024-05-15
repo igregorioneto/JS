@@ -50,8 +50,8 @@ export const Input = styled.input`
   border-radius: 100px;
   font-size: 16px;
   width: calc(100% - 20px);
-  max-width: 300px;
-  height: 28px;
+  max-width: 320px;
+  height: 48px;
 `;
 
 // Estilo para o botão de login
