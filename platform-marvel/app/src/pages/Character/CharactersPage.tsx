@@ -4,6 +4,7 @@ import getCharactersData from "../../services/characterService";
 import { CharacterType } from "../../domain/character";
 import { Container } from "./Characters.styles";
 import { CardList } from "../../components/CardList/CardList";
+import { Grid } from "@mui/material";
 
 /**
  * Página de Characters, listagem dos personagens da Marvel.
@@ -43,16 +44,19 @@ function CharactersPage() {
             <MenuBar />
             
             <Container>
-                <ul style={{ listStyleType: 'none', padding: 0, display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                <Grid container spacing={2}>
                     {characters.map((character: CharacterType) => (
-                        <li key={character.id}>
+                        <Grid item xs={12} sm={6} md={4} key={character.id}>
                             <CardList 
                                 name={character.name} 
                                 description={character.description} 
-                                backgroundImage={images[character.image_id] || ''}/>
-                        </li>
+                                backgroundImage={images[character.image_id] || ''}
+                                info={character.appears_in}
+                                avaliations={character.fan_rating}
+                                />
+                        </Grid>
                     ))}
-                </ul>
+                </Grid>
             </Container>
         </>
     )

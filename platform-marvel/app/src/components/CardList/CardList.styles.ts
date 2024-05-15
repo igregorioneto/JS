@@ -1,10 +1,15 @@
+import { Card } from '@mui/material';
 import styled from 'styled-components';
+
+interface BigRectangleProps {
+    backgroundImage: string;
+}
 
 export const Container = styled.div`
   padding: 20px;
 `;
 
-export const BigRectangle = styled.div<{ backgroundImage: string }>`
+export const BigRectangle = styled.div<BigRectangleProps>`
    width: 100%;
   max-width: 289px;
   height: 439px;
@@ -12,11 +17,11 @@ export const BigRectangle = styled.div<{ backgroundImage: string }>`
   background-image: url(${props => props.backgroundImage});
   background-size: cover;
   background-position: center;
-  padding: 20px;
   box-sizing: border-box;
   display: flex;
   align-items: flex-end;
   position: relative;
+  margin-right: 20px;
 `;
 
 export const SmallRectangle = styled.div`
@@ -46,9 +51,13 @@ export const CardDescription = styled.p`
 
 export const DetailLink = styled.a`
   color: white;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+  z-index: 1000;
 `;
+
 
 
 

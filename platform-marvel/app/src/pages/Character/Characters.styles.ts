@@ -5,14 +5,13 @@ import backgroundImage from '../../assets/background.png';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   height: 100vh;  
   background-size: cover;
   position: relative;
   overflow: hidden;
-  background-color: #000000;  
-  z-index: -1;
+  background-color: #000000; 
 
   color: #fff;
 
