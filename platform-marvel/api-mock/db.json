@@ -6,76 +6,108 @@
     "marvel_characters": [
       {
         "id": 1,
-        "name": "Spider-Man",
-        "description": "Peter Parker, um adolescente com poderes de aranha.",
-        "image_id": "spider_man_image",
-        "appears_in": ["Spider-Man", "Avengers"],
-        "fan_rating": 4.8
+        "name": "Wanda Maximoff",
+        "description": "Wanda Maximoff, também conhecida como a Feiticeira Escarlate, possui habilidades mágicas e poderes de manipulação de realidade.",
+        "image_id": "wanda_maximoff_image",
+        "appears_in": ["Avengers: Age of Ultron", "Avengers: Infinity War", "WandaVision"],
+        "fan_rating": 4
       },
       {
         "id": 2,
-        "name": "Iron Man",
-        "description": "Tony Stark, um bilionário inventor e filantropo.",
-        "image_id": "iron_man_image",
-        "appears_in": ["Iron Man", "Avengers", "Captain America: Civil War"],
-        "fan_rating": 4.9
+        "name": "Thanos",
+        "description": "Thanos, o Titã Louco, busca coletar todas as Joias do Infinito para dizimar metade da população do universo.",
+        "image_id": "thanos_image",
+        "appears_in": ["Avengers: Infinity War", "Avengers: Endgame"],
+        "fan_rating": 5
       },
       {
         "id": 3,
-        "name": "Captain America",
-        "description": "Steve Rogers, um super-soldado da Segunda Guerra Mundial.",
-        "image_id": "captain_america_image",
-        "appears_in": ["Captain America", "Avengers"],
-        "fan_rating": 4.7
+        "name": "Hulk",
+        "description": "Bruce Banner, um cientista brilhante que se transforma no poderoso Hulk quando fica com raiva.",
+        "image_id": "hulk_image",
+        "appears_in": ["The Incredible Hulk", "Avengers", "Thor: Ragnarok"],
+        "fan_rating": 3
+      },
+      {
+        "id": 4,
+        "name": "Homem-Aranha",
+        "description": "Peter Parker, um estudante do ensino médio que se torna o super-herói Homem-Aranha após ser picado por uma aranha radioativa.",
+        "image_id": "spiderman_image",
+        "appears_in": ["Spider-Man: Homecoming", "Spider-Man: Far From Home", "Spider-Man: No Way Home"],
+        "fan_rating": 4
       }
     ],
     "marvel_movies": [
       {
         "id": 1,
-        "name": "Avengers: Endgame",
-        "description": "Os Vingadores enfrentam Thanos para restaurar o universo.",
-        "streaming_platform": "Disney+",
-        "critic_rating": 4.6,
-        "type_launch": "chronology"
+        "name": "Homem de Ferro",
+        "description": "Tony Stark constrói um traje para escapar de cativeiro.",
+        "streaming_platform": ["disney"],
+        "critic_rating": 3,
+        "type_launch": "chronology",
+        "image_id": "iron_man_1_image.png"
       },
       {
         "id": 2,
-        "name": "Spider-Man: Homecoming",
-        "description": "Peter Parker equilibra a vida escolar e seu papel como super-herói.",
-        "streaming_platform": "Netflix",
-        "critic_rating": 4.4,
-        "type_launch": "launch"
+        "name": "Homem de Ferro 2",
+        "description": "Tony Stark enfrenta novos inimigos e desafios após revelar sua identidade como Homem de Ferro.",
+        "streaming_platform": ["disney"],
+        "critic_rating": 4,
+        "type_launch": "chronology",
+        "image_id": "iron_man_2_image.png"
       },
       {
         "id": 3,
-        "name": "Iron Man",
-        "description": "Tony Stark constrói um traje para escapar de cativeiro.",
-        "streaming_platform": "Disney+",
-        "critic_rating": 4.5,
-        "type_launch": "chronology"
+        "name": "Thor",
+        "description": "As aventuras do Deus do Trovão.",
+        "streaming_platform": ["disney"],
+        "critic_rating": 4,
+        "type_launch": "chronology",
+        "image_id": "thor_image.png"
+      },
+      {
+        "id": 4,
+        "name": "Capitão América: O Primeiro Vingador",
+        "description": "Steve Rogers se torna o Capitão América para lutar na Segunda Guerra Mundial.",
+        "streaming_platform": ["disney"],
+        "critic_rating": 4,
+        "type_launch": "launch",
+        "image_id": "captain_america_image.png"
+      },
+      {
+        "id": 5,
+        "name": "Capitã Marvel",
+        "description": "Carol Danvers se torna uma das heroínas mais poderosas do universo.",
+        "streaming_platform": ["disney"],
+        "critic_rating": 4,
+        "type_launch": "launch",
+        "image_id": "captain_marvel_image.png"
       }
     ],
     "marvel_comics": [
       {
         "id": 1,
-        "name": "The Amazing Spider-Man #1",
-        "description": "A primeira edição do Homem-Aranha.",
-        "store": "Comic Store",
-        "critic_rating": 4.9
+        "name": "Origem",
+        "description": "A origem do herói.",
+        "store": ["americanas"],
+        "critic_rating": 4,
+        "image_id": "hq_origem.png"
       },
       {
         "id": 2,
-        "name": "Iron Man #1",
-        "description": "A primeira edição do Homem de Ferro.",
-        "store": "Barnes & Noble",
-        "critic_rating": 4.8
+        "name": "Surfista Prateado",
+        "description": "A jornada do Surfista Prateado.",
+        "store": ["amazon", "americanas"],
+        "critic_rating": 5,
+        "image_id": "hq_surfista.png"
       },
       {
         "id": 3,
-        "name": "Captain America #1",
-        "description": "A primeira edição do Capitão América.",
-        "store": "Comic Store",
-        "critic_rating": 4.7
+        "name": "Thor",
+        "description": "As aventuras do Deus do Trovão.",
+        "store": ["amazon"],
+        "critic_rating": 4,
+        "image_id": "hq_thor.png"
       }
     ]
   }
