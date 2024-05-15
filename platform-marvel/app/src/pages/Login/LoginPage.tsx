@@ -5,6 +5,7 @@ import postLogin from '../../services/userService';
 import { getFromLocalStorage, removeFromLocalStorage, saveToLocalStorage } from '../../utils/localStorage';
 import { Button, Input, LoginContainer, Options, Link } from './LoginPage.styles';
 import { ModalInfo } from '../../components/ModalInfo/ModalInfo';
+import { validateInput } from '../../utils/validInput';
 
 /**
  * Página de Login, para logar o usuário no App.
@@ -15,6 +16,8 @@ function LoginPage() {
     const [saveLogin, setSaveLogin] = useState(false);
     const [showError, setShowError] = useState(false);
     const [messageError, setMessageError] = useState<string>('');
+    const [usernameError, setUsernameError] = useState<string>('');
+    const [passwordError, setPasswordError] = useState<string>('');
 
     const navigate = useNavigate();
 
@@ -32,8 +35,23 @@ function LoginPage() {
         }
     }, []);
 
+    // Validações
+    const validateUsername = (user: string) => {
+        return validateInput(user, { required: true, minLength: 4 }, setUsernameError);
+    }
+
+    const validatePassword = (pass: string) => {
+        return validateInput(pass, { required: true, minLength: 4 }, setPasswordError)
+    }
+
     // Lógica do Login (validação, envio para o servidor, etc.)
     const handleLogin = async (user: string, pass: string) => {
+        const isUsernameValid = validateUsername(user || username);
+        const isPasswordValid = validatePassword(pass || password);
+
+        if (!isUsernameValid || !isPasswordValid)
+            return;
+
         try {
             const response = await postLogin({ username: user || username, password: pass || password });
             if (response) {
@@ -105,6 +123,7 @@ function LoginPage() {
                 value={username}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
             />
+            {usernameError && <div style={{ color: 'red', marginBottom: '10px', fontSize: '14px' }}>{usernameError}</div>}
 
             <Input
                 type="password"
@@ -112,6 +131,7 @@ function LoginPage() {
                 value={password}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
             />
+            {passwordError && <div style={{ color: 'red', marginBottom: '10px', fontSize: '14px' }}>{passwordError}</div>}
 
             <Options>
                 <label style={{ color: '#84848d' }}>
