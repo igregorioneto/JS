@@ -3,15 +3,15 @@ import MenuBar from "../../components/MenuBar/MenuBar"
 import { ComicType } from "../../domain/comic"
 import getComicsData from "../../services/comicService";
 import { Container } from "./Comics.styles";
-import { Grid } from "@mui/material";
 import { CardList } from "../../components/CardList/CardList";
+import { Carousel } from "react-bootstrap";
 
 /**
  * Página de Comics, listagem dos personagens da Marvel.
 */
 function ComicsPage() {
     const [comics, setComics] = useState<ComicType[]>([]);
-    const [images, setImages] = useState<{[key: string]:string}>({});
+    const [images, setImages] = useState<{ [key: string]: string }>({});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,12 +21,12 @@ function ComicsPage() {
                     setComics(response);
 
                     // Importação dinâmica das imagens
-                    const imageImports = response.map(comic => 
-                        import(`../../assets/${comic.image_id}`)
-                        .then(image => ({ [comic.image_id]: image.default }))
+                    const imageImports = response.map(comic =>
+                        import(`../../assets/${comic.image_id}.png`)
+                            .then(image => ({ [comic.image_id]: image.default }))
                     );
                     const imageResults = await Promise.all(imageImports);
-                    const imagesMap = imageResults.reduce((acc, img) => ({...acc, ...img }), {})
+                    const imagesMap = imageResults.reduce((acc, img) => ({ ...acc, ...img }), {})
                     setImages(imagesMap);
                 } else {
                     console.error('A resposta da API é nula.')
@@ -41,21 +41,42 @@ function ComicsPage() {
     return (
         <>
             <MenuBar />
-            
+
             <Container>
-                <Grid container spacing={2}>
-                        {comics.map((comic: ComicType) => (
-                            <Grid item xs={12} sm={6} md={4} key={comic.id}>
-                                <CardList 
-                                    name={comic.name} 
-                                    description={comic.description} 
-                                    backgroundImage={images[comic.image_id] || ''}
-                                    info={comic.store}
-                                    avaliations={comic.critic_rating}
-                                    />
-                            </Grid>
-                        ))}
-                </Grid>
+                <div className="row justify-content-center">
+                    <div className="col-md-12" style={{ width: '100vw' }}>
+                        <Carousel
+                            interval={null}
+                            prevIcon={null}
+                            prevLabel={null}
+                            indicators={null}
+                        >
+                            {comics.reduce((slides: JSX.Element[], comic: ComicType, index: number) => {
+                                if (index % 3 === 0) {
+                                    const comicInGroup = comics.slice(index, index + 3);
+                                    slides.push(
+                                        <Carousel.Item key={index}>
+                                            <div className="d-flex justify-content-center">
+                                                {comicInGroup.map((comicInGroup) => (
+                                                    <div key={comicInGroup.id} style={{ marginRight: '10px' }}>
+                                                        <CardList
+                                                            name={comicInGroup.name}
+                                                            description={comicInGroup.description}
+                                                            backgroundImage={images[comicInGroup.image_id] || ''}
+                                                            info={comicInGroup.store}
+                                                            avaliations={comicInGroup.critic_rating}
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </Carousel.Item>
+                                    );
+                                }
+                                return slides;
+                            }, [])}
+                        </Carousel>
+                    </div>
+                </div>
             </Container>
         </>
     )

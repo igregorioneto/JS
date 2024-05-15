@@ -35,7 +35,7 @@ const MenuBar = () => {
                 color="#ffffff"
                 textAlign="left"
                 rectangle={true}
-                rectangeMaxHeight='45px'
+                rectangeMaxHeight='55px'
                 rectangeMaxWidth='85px'
             >
                 Marvel

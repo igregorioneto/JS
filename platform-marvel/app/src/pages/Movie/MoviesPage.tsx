@@ -4,8 +4,9 @@ import { MovieType } from "../../domain/movie"
 import getMoviesData from "../../services/movieService";
 import { getFromLocalStorage } from "../../utils/localStorage";
 import { Container } from "./Movies.styles";
-import { Grid, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { CardList } from "../../components/CardList/CardList";
+import { Carousel } from "react-bootstrap";
 
 import { styled } from '@mui/system';
 
@@ -22,7 +23,7 @@ const StyledSelect = styled(Select)(({ theme }) => ({
     color: '#ff0000',
     paddingLeft: '10px',
     '& .MuiSelect-select': {
-        paddingLeft: '10px', 
+        paddingLeft: '10px',
     },
     '& .MuiSvgIcon-root': {
         color: '#ff0000',
@@ -39,7 +40,7 @@ const StyledSelect = styled(Select)(({ theme }) => ({
 function MoviesPage() {
     const [movies, setMovies] = useState<MovieType[]>([]);
     const [typeMovie, setTypeMovie] = useState('');
-    const [images, setImages] = useState<{[key: string]:string}>({});
+    const [images, setImages] = useState<{ [key: string]: string }>({});
 
     const fetchData = async () => {
         try {
@@ -48,12 +49,12 @@ function MoviesPage() {
                 setMovies(response);
 
                 // Importação dinâmica das imagens
-                const imageImports = response.map(movie => 
-                    import(`../../assets/${movie.image_id}`)
-                    .then(image => ({ [movie.image_id]: image.default }))
+                const imageImports = response.map(movie =>
+                    import(`../../assets/${movie.image_id}.png`)
+                        .then(image => ({ [movie.image_id]: image.default }))
                 );
                 const imageResults = await Promise.all(imageImports);
-                const imagesMap = imageResults.reduce((acc, img) => ({...acc, ...img }), {})
+                const imagesMap = imageResults.reduce((acc, img) => ({ ...acc, ...img }), {})
                 setImages(imagesMap);
             } else {
                 console.error('A resposta da API é nula.');
@@ -63,7 +64,7 @@ function MoviesPage() {
         }
     }
 
-    useEffect(() => {    
+    useEffect(() => {
         fetchData();
     }, []);
 
@@ -71,20 +72,20 @@ function MoviesPage() {
         const selectType = event.target.value;
         setTypeMovie(selectType);
 
-        const moviesString = getFromLocalStorage('moviesData');        
+        const moviesString = getFromLocalStorage('moviesData');
         if (moviesString) {
             let movies: MovieType[] = JSON.parse(moviesString);
             let filteredMovies = selectType ? movies.filter(movie => movie.type_launch === selectType) : movies;
-            setMovies(filteredMovies);            
+            setMovies(filteredMovies);
         } else {
             console.error(`Não foram encontrados filmes do tipo: ${selectType}`);
-        }        
-    }        
+        }
+    }
 
     return (
         <>
             <MenuBar />
-            
+
             <Container>
                 <StyledSelect
                     id="mySelector"
@@ -92,6 +93,7 @@ function MoviesPage() {
                     onChange={handleChangeType}
                     displayEmpty
                     renderValue={(selected: any) => selected.length === 0 ? "Filtrar por" : selected === "launch" ? "Lançamento" : "Cronologia"}
+                    className="filter-button"
                 >
                     <MenuItem value="">
                         <em>Filtrar por</em>
@@ -99,19 +101,41 @@ function MoviesPage() {
                     <MenuItem value="launch">Lançamento</MenuItem>
                     <MenuItem value="chronology">Cronologia</MenuItem>
                 </StyledSelect>
-                <Grid container spacing={2}>
-                        {movies.map((movie: MovieType) => (
-                            <Grid item xs={12} sm={6} md={4} key={movie.id}>
-                                <CardList 
-                                    name={movie.name} 
-                                    description={movie.description} 
-                                    backgroundImage={images[movie.image_id] || ''}
-                                    info={movie.streaming_platform}
-                                    avaliations={movie.critic_rating}
-                                    />
-                            </Grid>
-                        ))}
-                </Grid>
+
+                <div className="row justify-content-center">
+                    <div className="col-md-12" style={{ width: '100vw' }}>
+                        <Carousel
+                            interval={null}
+                            prevIcon={null}
+                            prevLabel={null}
+                            indicators={null}
+                        >
+                            {movies.reduce((slides: JSX.Element[], movie: MovieType, index: number) => {
+                                if (index % 3 === 0) {
+                                    const moviesInGroup = movies.slice(index, index + 3);
+                                    slides.push(
+                                        <Carousel.Item key={index}>
+                                            <div className="d-flex justify-content-center">
+                                                {moviesInGroup.map((movieInGroup) => (
+                                                    <div key={movieInGroup.id} style={{marginRight:'10px'}}>
+                                                        <CardList
+                                                            name={movieInGroup.name}
+                                                            description={movieInGroup.description}
+                                                            backgroundImage={images[movieInGroup.image_id] || ""}
+                                                            info={movieInGroup.streaming_platform}
+                                                            avaliations={movieInGroup.critic_rating}
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </Carousel.Item>
+                                    );
+                                }
+                                return slides;
+                            }, [])}
+                        </Carousel>
+                    </div>
+                </div>
             </Container>
         </>
     )

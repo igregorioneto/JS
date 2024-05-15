@@ -4,14 +4,30 @@ import backgroundImage from '../../assets/background.png';
 // Estilo para tela de login
 export const Container = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center; 
+  flex-direction: column;
   justify-content: center;
   height: 100vh;  
   background-size: cover;
   overflow: hidden;
   background-color: #000000;
+  position: relative;
 
   color: #fff;
+
+  .carousel-container {
+    width: 80%;
+    margin-top: 50px; /* Margem superior para separar o botão de filtro do carrossel */
+  }
+
+  .filter-button {
+    position: absolute;
+    top: 20px; /* Posicionamento em relação ao topo */
+    left: 50%; /* Centralização horizontal */
+    transform: translateX(-50%); /* Centralização horizontal */
+    z-index: 1; /* Garante que o botão esteja acima do carrossel */
+  }
+
 
   @media (min-width: 700px) {
     background: linear-gradient(89deg, 
