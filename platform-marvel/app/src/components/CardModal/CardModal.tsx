@@ -3,8 +3,18 @@ import { CardModalProps } from "../CardList/cardProps";
 import { Modal } from "react-bootstrap";
 import { useImageLoader } from "../../hooks/useImageLoader";
 import StarIcon from '@mui/icons-material/Star';
-import { BackgroundImageSection, CloseButton, CustomModalBody, InfoSection, ModalContentContainer } from "./CardModal.styles";
+import { CloseButton, CustomModalBody, InfoSection, ModalContentContainer } from "./CardModal.styles";
+import styled from "styled-components";
 
+const BackgroundImageSection = styled.div<{ backgroundImage: string }>`
+    flex: 1;
+    background-image: url(${props => props.backgroundImage});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    width: 50%;
+`;
 
 export const CardModal: React.FC<CardModalProps> = ({
     name,

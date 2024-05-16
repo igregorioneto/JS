@@ -3,9 +3,9 @@ import backgroundImage from '../../assets/background.png';
 
 // Estilo para tela de login
 export const Container = styled.div`
-  display: flex;
+   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   height: 100vh;  
   background-size: cover;

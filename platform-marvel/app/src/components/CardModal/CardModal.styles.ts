@@ -19,15 +19,9 @@ export const InfoSection = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    width: 50%;
 `;
 
-export const BackgroundImageSection = styled.div<{ backgroundImage: string }>`
-    flex: 1;
-    background-image: url(${props => props.backgroundImage});
-    background-size: cover;
-    background-position: center;
-    position: relative;
-`;
 
 export const CustomModalBody = styled(Modal.Body)`
     display: flex;
