@@ -6,7 +6,7 @@ import backgroundImage from '../../assets/background.png';
 export const Container = styled.div`
    display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   height: 100vh;  
   background-size: cover;

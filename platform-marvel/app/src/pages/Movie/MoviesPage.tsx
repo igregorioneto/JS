@@ -11,9 +11,10 @@ import { ModalInfo } from "../../components/ModalInfo/ModalInfo";
 import { useImageLoader } from "../../hooks/useImageLoader";
 
 const StyledSelect = styled(Select)(({ theme }) => ({
-    position: 'absolute',
     width: '165px',
     height: '44px',
+    marginLeft: '20px',
+    marginBottom: '20px',
     borderColor: '#ff0000',
     borderWidth: '1px',
     borderStyle: 'solid',
