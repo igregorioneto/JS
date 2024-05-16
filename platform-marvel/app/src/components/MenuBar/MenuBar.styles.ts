@@ -10,11 +10,22 @@ export const MenuBarContainer = styled.div`
     color: #ffffff; // Cor do texto
     filter: drop-shadow(0px 3px 3px rgba(255,0,0,0.53 ));
     background: #000000;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 `;
 
 export const MenuOptions = styled.div`
     display: flex; // Flexbox para organizar as opções
     gap: 20px; // Espaço entre as opções
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
 `;
 
 // Estilo para a foto de perfil
@@ -22,6 +33,10 @@ export const ProfileSelection = styled.div`
     display: flex; // Flexbox para manter o alinhamento
     align-items: center;
     gap: 10px; // Espaço entre a foto e o botão
+
+    @media (max-width: 768px) {
+        align-self: flex-end;
+    }
 `;
 
 // Componente da foto do perfil

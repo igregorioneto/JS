@@ -1,55 +1,11 @@
 import { Rating } from "@mui/material";
 import { CardModalProps } from "../CardList/cardProps";
-import { Button, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { useImageLoader } from "../../hooks/useImageLoader";
-import styled, { createGlobalStyle } from "styled-components";
 import StarIcon from '@mui/icons-material/Star';
+import { BackgroundImageSection, CloseButton, CustomModalBody, InfoSection, ModalContentContainer } from "./CardModal.styles";
 
-const ModalContentContainer = styled.div`
-    display: flex;
-    height: 100%;
-`;
 
-const InfoSection = styled.div`
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    color: #fff;
-    background: #ff0000;
-    background: linear-gradient(180deg, 
-    #ff0000 0.00%, 
-    #400e0e 100.00%);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-`;
-
-const BackgroundImageSection = styled.div<{ backgroundImage: string }>`
-    flex: 1;
-    background-image: url(${props => props.backgroundImage});
-    background-size: cover;
-    background-position: center;
-    position: relative;
-`;
-
-const CustomModalBody = styled(Modal.Body)`
-    display: flex;
-    height: 70vh;
-    padding: 0;
-    margin: 0;
-`;
-
-const CloseButton = styled.button`
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-`;
 
 
 export const CardModal: React.FC<CardModalProps> = ({
