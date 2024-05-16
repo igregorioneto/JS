@@ -9,32 +9,32 @@
         "name": "Wanda Maximoff",
         "description": "Wanda Maximoff, também conhecida como a Feiticeira Escarlate, possui habilidades mágicas e poderes de manipulação de realidade.",
         "image_id": "wanda_maximoff_image",
-        "appears_in": ["Avengers: Age of Ultron", "Avengers: Infinity War", "WandaVision"],
-        "fan_rating": 4
+        "info": ["Avengers: Age of Ultron", "Avengers: Infinity War", "WandaVision"],
+        "avaliations": 4
       },
       {
         "id": 2,
         "name": "Thanos",
         "description": "Thanos, o Titã Louco, busca coletar todas as Joias do Infinito para dizimar metade da população do universo.",
         "image_id": "thanos_image",
-        "appears_in": ["Avengers: Infinity War", "Avengers: Endgame"],
-        "fan_rating": 5
+        "info": ["Avengers: Infinity War", "Avengers: Endgame"],
+        "avaliations": 5
       },
       {
         "id": 3,
         "name": "Hulk",
         "description": "Bruce Banner, um cientista brilhante que se transforma no poderoso Hulk quando fica com raiva.",
         "image_id": "hulk_image",
-        "appears_in": ["The Incredible Hulk", "Avengers", "Thor: Ragnarok"],
-        "fan_rating": 3
+        "info": ["The Incredible Hulk", "Avengers", "Thor: Ragnarok"],
+        "avaliations": 3
       },
       {
         "id": 4,
         "name": "Homem-Aranha",
         "description": "Peter Parker, um estudante do ensino médio que se torna o super-herói Homem-Aranha após ser picado por uma aranha radioativa.",
         "image_id": "spiderman_image",
-        "appears_in": ["Spider-Man: Homecoming", "Spider-Man: Far From Home", "Spider-Man: No Way Home"],
-        "fan_rating": 4
+        "info": ["Spider-Man: Homecoming", "Spider-Man: Far From Home", "Spider-Man: No Way Home"],
+        "avaliations": 4
       }
     ],
     "marvel_movies": [
@@ -42,8 +42,8 @@
         "id": 1,
         "name": "Homem de Ferro",
         "description": "Tony Stark constrói um traje para escapar de cativeiro.",
-        "streaming_platform": ["disney"],
-        "critic_rating": 3,
+        "info": ["disney"],
+        "avaliations": 3,
         "type_launch": "chronology",
         "image_id": "iron_man_1_image"
       },
@@ -51,8 +51,8 @@
         "id": 2,
         "name": "Homem de Ferro 2",
         "description": "Tony Stark enfrenta novos inimigos e desafios após revelar sua identidade como Homem de Ferro.",
-        "streaming_platform": ["disney"],
-        "critic_rating": 4,
+        "info": ["disney"],
+        "avaliations": 4,
         "type_launch": "chronology",
         "image_id": "iron_man_2_image"
       },
@@ -60,8 +60,8 @@
         "id": 3,
         "name": "Thor",
         "description": "As aventuras do Deus do Trovão.",
-        "streaming_platform": ["disney"],
-        "critic_rating": 4,
+        "info": ["disney"],
+        "avaliations": 4,
         "type_launch": "chronology",
         "image_id": "thor_image"
       },
@@ -69,8 +69,8 @@
         "id": 4,
         "name": "Capitão América: O Primeiro Vingador",
         "description": "Steve Rogers se torna o Capitão América para lutar na Segunda Guerra Mundial.",
-        "streaming_platform": ["disney"],
-        "critic_rating": 4,
+        "info": ["disney"],
+        "avaliations": 4,
         "type_launch": "launch",
         "image_id": "captain_america_image"
       },
@@ -78,8 +78,8 @@
         "id": 5,
         "name": "Capitã Marvel",
         "description": "Carol Danvers se torna uma das heroínas mais poderosas do universo.",
-        "streaming_platform": ["disney"],
-        "critic_rating": 4,
+        "info": ["disney"],
+        "avaliations": 4,
         "type_launch": "launch",
         "image_id": "captain_marvel_image"
       }
@@ -89,24 +89,24 @@
         "id": 1,
         "name": "Origem",
         "description": "A origem do herói.",
-        "store": ["americanas"],
-        "critic_rating": 4,
+        "info": ["americanas"],
+        "avaliations": 4,
         "image_id": "hq_origem"
       },
       {
         "id": 2,
         "name": "Surfista Prateado",
         "description": "A jornada do Surfista Prateado.",
-        "store": ["amazon", "americanas"],
-        "critic_rating": 5,
+        "info": ["amazon", "americanas"],
+        "avaliations": 5,
         "image_id": "hq_surfista"
       },
       {
         "id": 3,
         "name": "Thor",
         "description": "As aventuras do Deus do Trovão.",
-        "store": ["amazon"],
-        "critic_rating": 4,
+        "info": ["amazon"],
+        "avaliations": 4,
         "image_id": "hq_thor"
       }
     ]

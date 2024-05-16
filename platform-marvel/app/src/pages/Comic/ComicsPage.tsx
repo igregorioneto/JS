@@ -5,13 +5,13 @@ import getComicsData from "../../services/comicService";
 import { Container } from "./Comics.styles";
 import { CarouselList } from "../../components/CarouselList/CarouselList";
 import { ModalInfo } from "../../components/ModalInfo/ModalInfo";
+import { useImageLoader } from "../../hooks/useImageLoader";
 
 /**
  * Página de Comics, listagem dos personagens da Marvel.
 */
 function ComicsPage() {
     const [comics, setComics] = useState<ComicType[]>([]);
-    const [images, setImages] = useState<{ [key: string]: string }>({});
     const [showError, setShowError] = useState<boolean>(false);
     const [messageError, setMessageError] = useState<string>('');
 
@@ -21,15 +21,6 @@ function ComicsPage() {
                 const response = await getComicsData();
                 if (response !== null) {
                     setComics(response);
-
-                    // Importação dinâmica das imagens
-                    const imageImports = response.map(comic =>
-                        import(`../../assets/${comic.image_id}.png`)
-                            .then(image => ({ [comic.image_id]: image.default }))
-                    );
-                    const imageResults = await Promise.all(imageImports);
-                    const imagesMap = imageResults.reduce((acc, img) => ({ ...acc, ...img }), {})
-                    setImages(imagesMap);
                 } else {
                     console.error('A resposta da API é nula.')
                     setShowError(true);
@@ -43,6 +34,15 @@ function ComicsPage() {
         };
         fetchData();
     }, []);
+
+    const [images, imageLoadError, imageLoadErrorMessage] = useImageLoader(comics);
+
+    useEffect(() => {
+        if (imageLoadError) {
+            setShowError(true);
+            setMessageError(imageLoadErrorMessage);
+        }
+    }, [imageLoadError, imageLoadErrorMessage]);
 
     return (
         <>

@@ -36,7 +36,7 @@ export const CardModal: React.FC<CardModalProps> = ({
                     : <></>
                 }
                 <div>{titleAvaliations}</div>
-                <Rating name="read-only" value={avaliations} />
+                <Rating name="read-only" value={avaliations} readOnly />
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={onHide}>X</Button>

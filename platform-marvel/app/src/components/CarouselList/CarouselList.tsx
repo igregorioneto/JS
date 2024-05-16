@@ -41,8 +41,8 @@ export const CarouselList: React.FC<CaroulselListProps> = ({ propList, images })
                                         name={props.name}
                                         description={props.description}
                                         backgroundImage={images[props.image_id] || ""}
-                                        info={props.streaming_platform}
-                                        avaliations={props.critic_rating}
+                                        info={props.info}
+                                        avaliations={props.avaliations}
                                         onShowModal={() => handleModal(props)}
                                     />
                                 </ListGroup.Item>
@@ -60,8 +60,8 @@ export const CarouselList: React.FC<CaroulselListProps> = ({ propList, images })
                         name={selectedItem.name}
                         description={selectedItem.description}
                         backgroundImage={images[selectedItem.image_id] || ""}
-                        info={['americanas']}
-                        avaliations={selectedItem.critic_rating}
+                        info={selectedItem.info}
+                        avaliations={selectedItem.avaliations}
                         titleAvaliations="Avaliação"
                         isDescription={true}
                         isSuggestion={true}
