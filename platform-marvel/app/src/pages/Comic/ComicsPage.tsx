@@ -35,7 +35,7 @@ function ComicsPage() {
         fetchData();
     }, []);
 
-    const [images, imageLoadError, imageLoadErrorMessage] = useImageLoader(comics);
+    const [images, imageLoadError, imageLoadErrorMessage] = useImageLoader(false, true, comics, undefined);
 
     useEffect(() => {
         if (imageLoadError) {

@@ -36,7 +36,7 @@ function CharactersPage() {
         fetchData();
     }, []);
 
-    const [images, imageLoadError, imageLoadErrorMessage] = useImageLoader(characters);
+    const [images, imageLoadError, imageLoadErrorMessage] = useImageLoader(false, true, characters, undefined);
 
     useEffect(() => {
         if (imageLoadError) {

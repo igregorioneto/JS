@@ -80,7 +80,7 @@ function MoviesPage() {
         }
     }
 
-    const [images, imageLoadError, imageLoadErrorMessage] = useImageLoader(movies);
+    const [images, imageLoadError, imageLoadErrorMessage] = useImageLoader(false, true, movies, undefined);
 
     useEffect(() => {   
         if (imageLoadError) {
