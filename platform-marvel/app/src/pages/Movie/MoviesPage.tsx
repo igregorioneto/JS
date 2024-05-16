@@ -42,6 +42,7 @@ function MoviesPage() {
     const [typeMovie, setTypeMovie] = useState('');
     const [showError, setShowError] = useState<boolean>(false);
     const [messageError, setMessageError] = useState<string>('');
+    const [containerZIndex, setContainerZIndex] = useState('auto');
 
     const fetchData = async () => {
         try {
@@ -91,9 +92,9 @@ function MoviesPage() {
 
     return (
         <>
-            <MenuBar />
+            <MenuBar setContainerZIndex={setContainerZIndex} />
 
-            <Container>
+            <Container style={{ zIndex: containerZIndex }}>
                 <StyledSelect
                     id="mySelector"
                     value={typeMovie}

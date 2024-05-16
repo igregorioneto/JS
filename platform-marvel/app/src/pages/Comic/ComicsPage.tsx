@@ -14,6 +14,7 @@ function ComicsPage() {
     const [comics, setComics] = useState<ComicType[]>([]);
     const [showError, setShowError] = useState<boolean>(false);
     const [messageError, setMessageError] = useState<string>('');
+    const [containerZIndex, setContainerZIndex] = useState('auto');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,9 +47,9 @@ function ComicsPage() {
 
     return (
         <>
-            <MenuBar />
+            <MenuBar setContainerZIndex={setContainerZIndex} />
 
-            <Container>
+            <Container style={{ zIndex: containerZIndex }}>
                 {/* Listagem em formato de Carousel */}
                 <CarouselList propList={comics} images={images} page="comic" />
 

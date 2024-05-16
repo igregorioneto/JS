@@ -14,6 +14,7 @@ function CharactersPage() {
     const [characters, setCharacters] = useState<CharacterType[]>([]);
     const [showError, setShowError] = useState<boolean>(false);
     const [messageError, setMessageError] = useState<string>('');
+    const [containerZIndex, setContainerZIndex] = useState('auto');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -47,9 +48,9 @@ function CharactersPage() {
 
     return (
         <>
-            <MenuBar />
+            <MenuBar setContainerZIndex={setContainerZIndex} />
 
-            <Container>
+            <Container style={{ zIndex: containerZIndex }}>
                 {/* Listagem em formato de Carousel */}
                 <CarouselList propList={characters} images={images} page="character" />
 
