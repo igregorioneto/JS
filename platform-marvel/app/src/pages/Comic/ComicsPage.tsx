@@ -50,7 +50,7 @@ function ComicsPage() {
 
             <Container>
                 {/* Listagem em formato de Carousel */}
-                <CarouselList propList={comics} images={images} />
+                <CarouselList propList={comics} images={images} page="comic" />
 
                 {
                     showError ? (

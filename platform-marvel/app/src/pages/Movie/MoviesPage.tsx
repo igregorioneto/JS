@@ -110,7 +110,7 @@ function MoviesPage() {
                 </StyledSelect>
 
                 {/* Listagem em formato de Carousel */}
-                <CarouselList propList={movies} images={images} />
+                <CarouselList propList={movies} images={images} page="movie" />
 
 
                 {

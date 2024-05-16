@@ -45,7 +45,18 @@ export const CardModal: React.FC<CardModalProps> = ({
                                 }
                             </ul>
                         </div>
-                        : <></>
+                        : <div>
+                            <div>{titleSuggestion}</div>
+                            <ul>
+                                {
+                                    info.map((infoItem, index) => (
+                                        <li key={index}>
+                                            {infoItem}
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
                     }
                     <div>{titleAvaliations}</div>
                     <Rating name="read-only" value={avaliations} readOnly />

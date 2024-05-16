@@ -3,12 +3,27 @@ import { CardList } from "../CardList/CardList";
 import { useState } from "react";
 import { CardModal } from "../CardModal/CardModal";
 
+type PageType = 'character' | 'comic' | 'movie';
+
 interface CaroulselListProps {
     propList: any[];
     images: { [key: string]: string };
+    page: PageType;
 }
 
-export const CarouselList: React.FC<CaroulselListProps> = ({ propList, images }) => {
+const titleAvaliation = {
+    'character': 'Avaliação dos fãns',
+    'comic': 'Crítica',
+    'movie': 'Crítica'
+};
+
+const titleSuggestion = {
+    'character': 'Aparições:',
+    'comic': 'Disponível para compra',
+    'movie': 'Disponível em streaming:'
+};
+
+export const CarouselList: React.FC<CaroulselListProps> = ({ propList, images, page }) => {
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [selectedItem, setSelectedItem] = useState<any | null>(null);
 
@@ -62,10 +77,10 @@ export const CarouselList: React.FC<CaroulselListProps> = ({ propList, images })
                         backgroundImage={images[selectedItem.image_id] || ""}
                         info={selectedItem.info}
                         avaliations={selectedItem.avaliations}
-                        titleAvaliations="Avaliação"
+                        titleAvaliations={titleAvaliation[page]}
                         isDescription={true}
-                        isSuggestion={true}
-                        titleSuggestion="Disponível para compra:"
+                        isSuggestion={page !== 'character' ? true : false}
+                        titleSuggestion={titleSuggestion[page]}
                         showModal={!!selectedItem}
                         onHide={hiddleModal}
                     />
