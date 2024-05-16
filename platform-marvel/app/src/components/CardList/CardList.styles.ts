@@ -1,12 +1,15 @@
-import { Card } from '@mui/material';
 import styled from 'styled-components';
 
 interface BigRectangleProps {
-    backgroundImage: string;
+  backgroundImage: string;
 }
 
 export const Container = styled.div`
   padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
 export const BigRectangle = styled.div<BigRectangleProps>`
@@ -22,6 +25,13 @@ export const BigRectangle = styled.div<BigRectangleProps>`
   align-items: flex-end;
   position: relative;
   margin-right: 20px;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    margin-right: 0;
+  }
 `;
 
 export const SmallRectangle = styled.div`
@@ -38,15 +48,30 @@ export const SmallRectangle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    height: 200px;
+    border-radius: 20px;
+    padding: 5px;
+  }
 `;
 
 export const CardTitle = styled.h3`
    margin: 0;
    font-size: 1.2em;
+
+   @media (max-width: 768px) {
+    font-size: 1em;
+  }
 `;
 
 export const CardDescription = styled.p`
   margin: 10px 0;
+
+  @media (max-width: 768px) {
+    font-size: 0.9em;
+    margin: 5px 0;
+  }
 `;
 
 export const DetailLink = styled.a`
@@ -56,6 +81,10 @@ export const DetailLink = styled.a`
   text-align: center;
   font-size: 20px;
   z-index: 1000;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 

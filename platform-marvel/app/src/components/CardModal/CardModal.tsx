@@ -6,8 +6,6 @@ import StarIcon from '@mui/icons-material/Star';
 import { BackgroundImageSection, CloseButton, CustomModalBody, InfoSection, ModalContentContainer } from "./CardModal.styles";
 
 
-
-
 export const CardModal: React.FC<CardModalProps> = ({
     name,
     description,
