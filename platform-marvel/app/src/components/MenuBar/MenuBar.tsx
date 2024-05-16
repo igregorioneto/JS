@@ -78,7 +78,7 @@ const MenuBar = ({ setContainerZIndex }) => {
             </MenuOptions>
 
             <ProfileSelection ref={dropdownRef}>
-                <DropdownButton
+                <DropdownButton                    
                     onClick={toggleDropDown}
                     title={<ProfilePicture src={profile} alt='Perfil' />}
                     id="dropdown-custom-components"
