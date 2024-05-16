@@ -1,12 +1,5 @@
 import { Box, Button, Card, CardContent, CardMedia, styled, Typography } from "@mui/material";
-
-interface CardListProps {
-    name: string;
-    description: string;
-    backgroundImage: string;
-    info: string[];
-    avaliations: number;
-}
+import { CardProps } from "./cardProps";
 
 export const StyledCard = styled(Card)(({ theme }) => ({
     width: 289,
@@ -18,7 +11,7 @@ export const StyledCard = styled(Card)(({ theme }) => ({
   }));
   
 
-export const CardList: React.FC<CardListProps> = ({ name, description, backgroundImage }) => (
+export const CardList: React.FC<CardProps> = ({ name, description, backgroundImage, onShowModal }) => (
     <StyledCard>
         <CardMedia
             component="div"
@@ -59,7 +52,8 @@ export const CardList: React.FC<CardListProps> = ({ name, description, backgroun
                     {description}
                 </Typography>
             </Box>
-            <Button size="small" href="#" 
+            <Button size="small"
+                onClick={onShowModal} 
                 sx={{ 
                     alignSelf: 'center', 
                     marginTop: 'auto', 
