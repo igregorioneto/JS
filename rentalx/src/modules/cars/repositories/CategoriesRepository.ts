@@ -9,8 +9,17 @@ interface ICreateCategoryDTO {
 class CategoriesReporitory implements ICategoryRepository {
     private categories: Category[];
 
-    constructor() {
+    private static INSTANCE: CategoriesReporitory;
+
+    private constructor() {
         this.categories = [];
+    }
+
+    public static getInstance(): CategoriesReporitory {
+        if (!CategoriesReporitory.INSTANCE) {
+            CategoriesReporitory.INSTANCE = new CategoriesReporitory();
+        }
+        return CategoriesReporitory.INSTANCE;
     }
 
     create({ name, description }: ICreateCategoryDTO): void {
