@@ -42,7 +42,7 @@ function obterMedia(notas) {
     });
 }
 
-async function main() {
+(async () => {
     try {
         const aluno = await obterAluno();
         const notas = await obterNotas(aluno.id);
@@ -57,8 +57,7 @@ async function main() {
     } catch (error) {
         console.error('Erro ao obter informações', error);
     }
-}
-main();
+})();
 
 
 // Outra forma de chamar a promise
