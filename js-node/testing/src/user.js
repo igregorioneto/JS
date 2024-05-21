@@ -3,7 +3,7 @@ class User {
         this.name = name
         this.id = id
         this.profession = profession
-        this.age = age
+        this.birthDay = new Date().getFullYear() - age
     }
 }
 
