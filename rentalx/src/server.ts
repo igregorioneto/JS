@@ -1,11 +1,20 @@
 import  express  from "express";
 import swaggerUi from "swagger-ui-express";
 
+import { router } from "./routes";
 import swaggerFile from "./swagger.json";
 
-import { router } from "./routes";
+import { AppDataSource } from "../data-source";
 
 const app = express();
+
+AppDataSource.initialize()
+    .then(() => {
+        console.log('Data Source has been initialized!');
+    })
+    .catch((err) => {
+        console.error('Error during Data Source initialization:', err);
+    });
 
 app.use(express.json());
 

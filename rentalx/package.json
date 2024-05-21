@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
+    "typeorm:migration:run": "npm run typeorm -- migration:run -d ./data-source.ts"
   },
   "keywords": [],
   "author": "",
@@ -12,9 +14,12 @@
   "dependencies": {
     "@types/multer": "^1.4.11",
     "csv-parse": "^5.5.6",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.5",
     "swagger-ui-express": "^5.0.0",
+    "typeorm": "^0.3.20",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
