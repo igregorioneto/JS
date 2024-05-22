@@ -10,9 +10,9 @@ const DEFAULT_OPTIONS = {
 }
 
 class File {
-    static async csvToJson(filePath) {
+    static async csvToJson(filePath) {        
         const content = await File.getFileContent(filePath);
-        const validation = File.isValid(content);
+        const validation = await File.isValid(content);
 
         if (!validation.valid) {
             throw new Error(validation.error);
@@ -65,7 +65,7 @@ class File {
             const columns = line.split(',');
             let user = {};
             for (const index in columns) {
-                user[header[index]] = columns[index];
+                user[header[index]] = columns[index].trim();
             }
             return new User(user);
         });
