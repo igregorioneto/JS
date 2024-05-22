@@ -2,7 +2,7 @@ const { error } = require('./src/constants');
 const File = require('./src/file');
 const { rejects, deepStrictEqual } = require('assert');
 
-(async () => {
+;(async () => {
 
     {
         const filePath = './mocks/emptyFile-invalid.csv';
