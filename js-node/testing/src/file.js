@@ -9,16 +9,23 @@ const DEFAULT_OPTIONS = {
     fields: ['id', 'name', 'profession', 'age']
 }
 
+const DEFAULT_FILTERED = { minAge: 1, maxAge : 100 }
+
 class File {
-    static async csvToJson(filePath) {        
+    static async csvToJson(filePath, filtered = DEFAULT_FILTERED) {
         const content = await File.getFileContent(filePath);
         const validation = await File.isValid(content);
-
         if (!validation.valid) {
             throw new Error(validation.error);
         }
 
-        const users = File.parseCSVToJson(content);
+        let users = File.parseCSVToJson(content);
+
+        users = users.filter(user => user.age >= filtered.minAge && user.age <= filtered.maxAge);
+        
+        if (users.length === 0) {
+            throw new Error(error.FILE_USERS_AGE_NOT_FILTER);
+        }
 
         return users;
     }
@@ -48,7 +55,7 @@ class File {
                 error: error.FILE_LENGTH_ERROR_MESSAGE,
                 valid: false
             }
-        }
+        }      
 
         return {
             valid: true
