@@ -7,7 +7,7 @@ class ImportCategoryController {
     async handle(request: Request, response: Response): Promise<Response<any, Record<string, any>>> {
         const { file } = request;
         await this.importCategoryUseCase.execute(file!);
-        return response.send();
+        return response.status(201).send();
     }
 }
 
