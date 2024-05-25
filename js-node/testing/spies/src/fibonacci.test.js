@@ -31,4 +31,23 @@ const Fibonacci = require('./fibonacci');
         assert.deepStrictEqual(args, expectedParams);
         assert.deepStrictEqual(results, expectedResult);
     }
+
+    {
+        const fibonacci = new Fibonacci();
+        const spy = sinon.spy(fibonacci, fibonacci.execute.name);
+        const [...results] = fibonacci.execute(7);
+        // console.log(...results)
+        // 0 1 1 2 3 5 8
+        const { args } = spy.getCall(2)
+        // console.log(args)
+        const expectedResult = [0 ,1 ,1 ,2 ,3 ,5 ,8];
+        const expectedParams = Object.values({
+            input: 5,
+            current: 1,
+            next: 2
+        })
+
+        assert.deepStrictEqual(results, expectedResult);
+        assert.deepStrictEqual(args, expectedParams);
+    }
 })();
