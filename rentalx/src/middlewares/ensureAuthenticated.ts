@@ -38,6 +38,8 @@ export async function ensureAuthenticated(
             throw new AppError("User does not exists!", 401);
         }
 
+        // Gravar no response o id do usuário
+
         next();
     } catch (error) {
         throw new AppError("Invalid token!", 401);
