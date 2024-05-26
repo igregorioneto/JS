@@ -3,6 +3,7 @@ import { verify } from "jsonwebtoken";
 
 import 'dotenv/config';
 import { UserRepository } from "../modules/accounts/repositories/implementations/UsersRepository";
+import { AppError } from "../errors/AppErrors";
 
 interface IPayload {
     sub: string;
@@ -16,7 +17,7 @@ export async function ensureAuthenticated(
     const authHeader = request.headers.authorization;
 
     if (!authHeader) {
-        throw new Error("Token missing!");
+        throw new AppError("Token missing!");
     }
 
     const [, token] = authHeader.split(" ");
@@ -24,7 +25,7 @@ export async function ensureAuthenticated(
     const secretSalt = process.env.SECRET_SALT;
 
     if (!secretSalt) {
-        throw new Error('SECRET_SALT environment variable is not defined.');
+        throw new AppError('SECRET_SALT environment variable is not defined.', 401);
     }
 
     try {
@@ -34,11 +35,11 @@ export async function ensureAuthenticated(
         const user = await userRepository.findById(user_id);
 
         if (!user) {
-            throw new Error("User does not exists!");
+            throw new AppError("User does not exists!", 401);
         }
 
         next();
     } catch (error) {
-        throw new Error("Invalid token!");
+        throw new AppError("Invalid token!", 401);
     }
 }

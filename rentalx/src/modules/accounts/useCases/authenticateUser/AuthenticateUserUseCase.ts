@@ -3,6 +3,7 @@ import { sign } from "jsonwebtoken";
 import { UserRepository } from "../../repositories/implementations/UsersRepository";
 
 import 'dotenv/config';
+import { AppError } from "../../../../errors/AppErrors";
 
 interface IRequest {
     email: string;
@@ -24,19 +25,19 @@ class AuthenticateUserUseCase {
         const user = await this.usersRepository.findByEmail(email);
 
         if (!user) {
-            throw new Error('Email or password incorrect!');
+            throw new AppError('Email or password incorrect!', 401);
         }
 
         const passwordMatch = await compare(password, user.password);
 
         if (!passwordMatch) {
-            throw new Error('Email or password incorrect!');
+            throw new AppError('Email or password incorrect!', 401);
         }
 
         const secretSalt = process.env.SECRET_SALT;
 
         if (!secretSalt) {
-            throw new Error('SECRET_SALT environment variable is not defined.');
+            throw new AppError('SECRET_SALT environment variable is not defined.', 401);
         }
 
         const token = sign({}, secretSalt, {

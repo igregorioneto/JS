@@ -1,3 +1,4 @@
+import { AppError } from "../../../../errors/AppErrors";
 import { ICategoryRepository } from "../../repositories/ICategoriesRepository";
 
 interface IRequest {
@@ -12,7 +13,7 @@ class CreateCategoryUseCase {
         const categoryAlreadyExists = await this.categoriesReposiroty.findByName(name);
 
         if (categoryAlreadyExists) {
-            throw new Error("Category Already exists!");
+            throw new AppError("Category Already exists!", 401);
         }
 
         await this.categoriesReposiroty.create({ name, description });

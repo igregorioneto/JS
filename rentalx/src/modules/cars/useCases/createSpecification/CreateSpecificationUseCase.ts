@@ -1,3 +1,4 @@
+import { AppError } from "../../../../errors/AppErrors";
 import { SpecificationsRepository } from "../../repositories/implementations/SpecificationsRepository";
 
 interface IRequest {
@@ -12,7 +13,7 @@ class CreateSpecificationUseCase {
         const specification = await this.specificationsRepository.findByName(name);
 
         if (specification) {
-            throw new Error("Specification Already exists!");
+            throw new AppError("Specification Already exists!", 401);
         }
 
         await this.specificationsRepository.create({ name, description });
