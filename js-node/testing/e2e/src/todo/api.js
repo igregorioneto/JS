@@ -1,11 +1,24 @@
 const http = require('http');
+const url = require('url');
 
 const todos = [];
 
 const routes = {
     "/todos:get": (request, response) => {
-        response.writeHead(200, { 'Content-Type': 'application/json' })
-        response.end(JSON.stringify(todos));
+        const queryObject = url.parse(request.url, true).query;
+        if (queryObject.id) {
+            const todo = todos.find(t => t.id === parseInt(queryObject.id));
+            if (todo) {
+                response.writeHead(200, { 'Content-Type': 'application/json' })
+                response.end(JSON.stringify(todo));
+            } else {
+                response.writeHead(404, { 'Content-Type': 'application/json' })
+                response.end(JSON.stringify({ error: 'Todo not found' }));
+            }
+        } else {
+            response.writeHead(200, { 'Content-Type': 'application/json' })
+            response.end(JSON.stringify(todos));
+        }        
     },
     "/todos:post": async (request, response) => {
         let body = '';
@@ -13,16 +26,10 @@ const routes = {
             body += chunk;
         }
         const todo = JSON.parse(body);
-        todo.id = 1;
+        todo.id = todos.length + 1;
         todos.push(todo);
         response.writeHead(201, { 'Content-Type': 'application/json' })
         response.end(JSON.stringify(todo));
-    },
-    "/todos?id=1:get": async (request, response) => {
-        const { id } = request.params;
-        const todo = todos.find(t => t.id === id);
-        response.writeHead(200), { 'Content-Type': 'application/json' }
-        response.end(JSON.stringify(todo))
     },
     default: (request, response) => {
         response.write('Hello World!');
@@ -32,7 +39,7 @@ const routes = {
 
 const handler = (request, response) => {
     const { url, method } = request;
-    const routeKey = `${url}:${method.toLowerCase()}`;
+    const routeKey = `${url.split('?')[0]}:${method.toLowerCase()}`;
     const chosen = routes[routeKey] || routes.default;
 
     return chosen(request, response);

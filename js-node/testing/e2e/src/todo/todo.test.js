@@ -21,7 +21,7 @@ describe('API Suite test', () => {
             const response = await request(app)
                 .get('/todos')
                 .expect(200);
-            
+
             assert.deepStrictEqual(response.body, todos);
         })
 
@@ -40,16 +40,18 @@ describe('API Suite test', () => {
             const todos = [{ id: 1, title: 'New Task', status: 'pending' }];
             const response = await request(app)
                 .get('/todos')
-                .expect(200);            
-            
+                .expect(200);
+
             assert.deepStrictEqual(response.body, todos);
         })
 
         it('Should request todo By ID', async () => {
-            const todo = { id: 1, title: 'New Task', status: 'pending' };
+
             const response = await request(app)
                 .get('/todos?id=1')
-                expect(200);
+                .expect(200);
+
+            const todo = { id: 1, title: 'New Task', status: 'pending' };
 
             assert.deepStrictEqual(response.body.id, todo.id);
             assert.deepStrictEqual(response.body.title, todo.title);
