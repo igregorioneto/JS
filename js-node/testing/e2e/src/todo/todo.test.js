@@ -57,5 +57,15 @@ describe('API Suite test', () => {
             assert.deepStrictEqual(response.body.title, todo.title);
             assert.deepStrictEqual(response.body.status, todo.status);
         })
+
+        it('Should request todo By ID NOT FOUND', async () => {
+            const response = await request(app)
+                .get('/todos?id=2')
+                .expect(404);
+
+            const error = { error: 'Todo not found' }
+
+            assert.deepEqual(response.body, error)
+        })
     })
 })
