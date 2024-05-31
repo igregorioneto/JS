@@ -67,5 +67,16 @@ describe('API Suite test', () => {
 
             assert.deepEqual(response.body, error)
         })
+
+        it('Should request updated todo', async () => {
+            const todo = { title: 'New', status: 'done' };
+            const response = await request(app)
+                .post('/todos?id=1')
+                .send(todo)
+                .expect(201);
+
+            assert.deepStrictEqual(response.body.title, todo.title);
+            assert.deepStrictEqual(response.body.status, todo.status);
+        })
     })
 })

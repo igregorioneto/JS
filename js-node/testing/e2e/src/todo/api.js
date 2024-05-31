@@ -31,6 +31,26 @@ const routes = {
         response.writeHead(201, { 'Content-Type': 'application/json' })
         response.end(JSON.stringify(todo));
     },
+    "todo:put": async (request, response) => {
+        const queryObject = url.parse(request.url, true).query;
+        if (queryObject.id) {
+            const todo = todos.find(t => t.id === queryObject.id);
+            if (todo) {
+                let body = '';
+                for await (const chunk of request) {
+                    body += chunk;
+                }
+                const todoUpdated = JSON.parse(body);
+                todo.title = todoUpdated.title;
+                todo.status = todoUpdated.status;
+
+                response.writeHead(201, { 'Content-Type': 'application/json' })
+                response.end(JSON.stringify(todo));
+            }
+            // Tratar o erro caso não tenha todo
+        }
+        // Tratar erro caso não tenha id como query param
+    },
     default: (request, response) => {
         response.write('Hello World!');
         return response.end();
