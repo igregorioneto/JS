@@ -57,6 +57,23 @@ const routes = {
             response.end(JSON.stringify({ error: 'Bad Request' }))
         }        
     },
+    "/todos:delete": async (request, response) => {
+        const queryObject = url.parse(request.url, true).query;
+        if (queryObject.id) {
+            const index = todos.findIndex(t => t.id === parseInt(queryObject.id));
+            if (index !== -1) {
+                todos.splice(index, 1);                
+                response.writeHead(204)
+                response.end()
+            } else {
+                response.writeHead(404, { 'Content-Type': 'application/json' })
+                response.end(JSON.stringify({ error: 'Not Found' }))
+            }   
+        } else {
+            response.writeHead(400, { 'Content-Type': 'application/json' })
+            response.end(JSON.stringify({ error: 'Bad Request' }))
+        }
+    },
     default: (request, response) => {
         response.write('Hello World!');
         return response.end();

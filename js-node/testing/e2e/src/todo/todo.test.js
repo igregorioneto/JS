@@ -96,5 +96,31 @@ describe('API Suite test', () => {
             const error = { error: 'Bad Request' }
             assert.deepStrictEqual(response.body, error);
         })
+
+        it('Should request deleted todo', async () => {
+            const response = await request(app)
+                .delete('/todos?id=1')
+                .expect(204);
+
+            assert.deepStrictEqual(response.status, 204);
+        })
+
+        it('Should request deleted todo not found', async () => {
+            const response = await request(app)
+                .delete('/todos?id=2')
+                .expect(404);
+
+            const error = { error: "Not Found" }
+            assert.deepStrictEqual(response.body, error);
+        })
+
+        it('Should request deleted todo Bad Request', async () => {
+            const response = await request(app)
+                .delete('/todos')
+                .expect(400);
+
+            const error = { error: 'Bad Request' }
+            assert.deepStrictEqual(response.body, error);
+        })
     })
 })
