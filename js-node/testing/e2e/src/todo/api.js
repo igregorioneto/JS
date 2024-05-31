@@ -31,10 +31,10 @@ const routes = {
         response.writeHead(201, { 'Content-Type': 'application/json' })
         response.end(JSON.stringify(todo));
     },
-    "todo:put": async (request, response) => {
+    "/todos:put": async (request, response) => {
         const queryObject = url.parse(request.url, true).query;
         if (queryObject.id) {
-            const todo = todos.find(t => t.id === queryObject.id);
+            const todo = todos.find(t => t.id === parseInt(queryObject.id));
             if (todo) {
                 let body = '';
                 for await (const chunk of request) {
@@ -44,12 +44,18 @@ const routes = {
                 todo.title = todoUpdated.title;
                 todo.status = todoUpdated.status;
 
-                response.writeHead(201, { 'Content-Type': 'application/json' })
+                response.writeHead(200, { 'Content-Type': 'application/json' })
                 response.end(JSON.stringify(todo));
-            }
-            // Tratar o erro caso não tenha todo
-        }
-        // Tratar erro caso não tenha id como query param
+            } else {
+                // Tratar o erro caso não tenha todo - 404
+                response.writeHead(404, { 'Content-Type': 'application/json' })
+                response.end(JSON.stringify({ error: 'Not Found' }))
+            }            
+        } else {
+            // Tratar erro caso não tenha id como query param - 400
+            response.writeHead(400, { 'Content-Type': 'application/json' });
+            response.end(JSON.stringify({ error: 'Bad Request' }))
+        }        
     },
     default: (request, response) => {
         response.write('Hello World!');

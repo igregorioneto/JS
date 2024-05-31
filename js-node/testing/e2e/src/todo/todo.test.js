@@ -71,12 +71,30 @@ describe('API Suite test', () => {
         it('Should request updated todo', async () => {
             const todo = { title: 'New', status: 'done' };
             const response = await request(app)
-                .post('/todos?id=1')
+                .put('/todos?id=1')
                 .send(todo)
-                .expect(201);
+                .expect(200);
 
             assert.deepStrictEqual(response.body.title, todo.title);
             assert.deepStrictEqual(response.body.status, todo.status);
+        })
+
+        it('Should request updated todo not found', async () => {
+            const response = await request(app)
+                .put('/todos?id=2')
+                .expect(404);
+
+            const error = { error: "Not Found" }
+            assert.deepStrictEqual(response.body, error);
+        })
+
+        it('Should request updated todo Bad Request', async () => {
+            const response = await request(app)
+                .put('/todos')
+                .expect(400);
+
+            const error = { error: 'Bad Request' }
+            assert.deepStrictEqual(response.body, error);
         })
     })
 })
