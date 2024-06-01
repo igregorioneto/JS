@@ -96,7 +96,7 @@ app.post('/reservations', (req, res) => {
         return res.status(400).send({ message: 'Required at least 30 minutes after current time.' })
     }
 
-    if (!isTimeOneHourDuration(startTime)) {
+    if (!isTimeOneHourDuration(startTime, endTime)) {
         return res.status(400).send({ message: 'At least 1 hour required.' })
     }
 
