@@ -35,11 +35,28 @@ test("Creating Recruiter", async () => {
     expect(recruiter.name).toBe("Larissa");
 })
 
-test("Creating Recruiter", async () => {        
+test("Creating Classifier", async () => {        
     const jobDescription = "Looking for a software engineer with experience in JavaScript, Node.js, and React.";
     expect(classifier).toBeInstanceOf(ResumeClassifier);
     expect(classifier.jobDescription).toBe(jobDescription);
 })
+
+test("Review Resume Candidate 1", async () => {        
+    recruiter.reviewResume(candidate1, 8, "Impressive experience and skills.");
+    expect(candidate1.rating).toBe(8);
+    expect(candidate1.comment).toBe("Impressive experience and skills.");
+})
+
+test("Classifier Candidate 1", async () => {        
+    classifier.classifyResume(candidate1);
+    const classifierCandidate1 = classifier.classification[0];
+    const result = {
+        candidate: 'John Doe',
+        percentForSkylls: 100,
+        classification: 40
+      };
+    expect(classifierCandidate1).toEqual(result);
+});
 
 
 

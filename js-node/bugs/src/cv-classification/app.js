@@ -19,7 +19,7 @@
     recruiter.reviewResume(candidate2, 5, "Lacks experience in required technologies.");
     classifier.classifyResume(candidate2);
 
-    recruiter.reviewResume(candidate3, 9, "Impressive experience and skills.");
+    recruiter.reviewResume(candidate3, 5, "Impressive experience and skills.");
     classifier.classifyResume(candidate3);
 
     console.log(classifier)
