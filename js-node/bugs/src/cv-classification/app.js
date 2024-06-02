@@ -8,6 +8,7 @@
 
     const candidate1 = new Candidate("John Doe", 5, ["JavaScript", "Node.js", "React", "MongoDB"]);
     const candidate2 = new Candidate("Jane Smith", 3, ["Python", "Django", "JavaScript"]);
+    const candidate3 = new Candidate("Fabricio", 5, ["JavaScript", "Node.js", "React"]);
 
     const recruiter = new Recruiter("Larissa");
     const classifier = new ResumeClassifier(jobDescription);
