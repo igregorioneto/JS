@@ -19,6 +19,9 @@
     recruiter.reviewResume(candidate2, 5, "Lacks experience in required technologies.");
     classifier.classifyResume(candidate2);
 
+    recruiter.reviewResume(candidate3, 9, "Impressive experience and skills.");
+    classifier.classifyResume(candidate3);
+
     module.exports = {
         candidate1,
         candidate2,

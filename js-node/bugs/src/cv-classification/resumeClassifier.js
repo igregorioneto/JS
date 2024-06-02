@@ -19,28 +19,32 @@ class ResumeClassifier {
     classifyResume(candidate) {
         // Lógica de classificação automática aqui
         let countSkillsEquals = 0;
-        for (let i = 0; i < candidate.skills.length; i++) {
-            if (this.jobDescription.includes(candidate.skills[i])){
-                countSkillsEquals++;
+        if (candidate.recruiter && (candidate.rating >= 0 && candidate.rating <= 10)) {
+            for (let i = 0; i < candidate.skills.length; i++) {
+                if (this.jobDescription.includes(candidate.skills[i])){
+                    countSkillsEquals++;
+                }
             }
-        }
-        
-        const percentClassify =  countSkillsEquals >= this.countSkillsForConsult ? 100 : (countSkillsEquals * 100) / this.countSkillsForConsult;
-        this.classification.push({
-            candidate: candidate.name,
-            percentForSkylls: percentClassify,
-            classification: (percentClassify / 100) * candidate.experience
-        })
+            
+            const percentClassify =  countSkillsEquals >= this.countSkillsForConsult 
+                ? 100 : (countSkillsEquals * 100) / this.countSkillsForConsult;
 
-        this.classification.sort((a, b) => {
-            if (a.classification > b.classification) {
-                return -1;
-            }
-            if (a.classification < b.classification) {
-                return 1;
-            }
-            return 0;
-        })
+            this.classification.push({
+                candidate: candidate.name,
+                percentForSkylls: percentClassify,
+                classification: (percentClassify / 100) * candidate.experience * candidate.rating
+            })
+    
+            this.classification.sort((a, b) => {
+                if (a.classification > b.classification) {
+                    return -1;
+                }
+                if (a.classification < b.classification) {
+                    return 1;
+                }
+                return 0;
+            })
+        }        
     }
 }
 
