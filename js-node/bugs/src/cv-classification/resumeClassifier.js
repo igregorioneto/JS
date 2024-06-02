@@ -35,15 +35,7 @@ class ResumeClassifier {
                 classification: (percentClassify / 100) * candidate.experience * candidate.rating
             })
     
-            this.classification.sort((a, b) => {
-                if (a.classification > b.classification) {
-                    return -1;
-                }
-                if (a.classification < b.classification) {
-                    return 1;
-                }
-                return 0;
-            })
+            this.classification.sort((a, b) => b.classification - a.classification);
         }        
     }
 }

@@ -22,6 +22,8 @@
     recruiter.reviewResume(candidate3, 9, "Impressive experience and skills.");
     classifier.classifyResume(candidate3);
 
+    console.log(classifier)
+
     module.exports = {
         candidate1,
         candidate2,
