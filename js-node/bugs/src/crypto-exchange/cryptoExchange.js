@@ -9,6 +9,11 @@ class CryptoExchange {
         this.orders.push(newOrder);
     }
 
+    cancelOrder(id) {
+        const index = this.orders.findIndex(o => o.id === id);
+        this.orders.splice(index, 1);
+    }
+
     // Closure para verificar o estado do pedido
     checkOrderStatus(type)  {
         return () => {
