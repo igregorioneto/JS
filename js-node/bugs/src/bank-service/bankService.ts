@@ -1,4 +1,4 @@
-interface Account {
+export interface Account {
     accountId: string;
     balance: number;
 }
@@ -10,14 +10,18 @@ class BankService {
         this.accounts = [];
     }
 
-    createAccount(initialBalance: number): string {
+    createAccount(initialBalance: number): Account {
         const accountId = this.generateAccountId();
         const newAccount: Account = {
             accountId,
             balance: initialBalance,
         };
         this.accounts.push(newAccount);
-        return accountId;
+        return newAccount;
+    }
+
+    listAccounts(): Account[] {
+        return this.accounts;
     }
 
     private generateAccountId(): string {
