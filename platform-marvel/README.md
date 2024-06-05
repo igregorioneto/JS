@@ -15,6 +15,8 @@ A Plataforma Marvel é um projeto inovador que oferece aos usuários uma experi�
 - **Exploração de HQs:** Navegue por uma vasta coleção de histórias em quadrinhos da Marvel, com resumos, ilustrações e detalhes sobre autores e artistas.
 
 - **Sistema de Login:** Os usuários podem criar uma conta e fazer login para acessar recursos exclusivos, como favoritos e recomendações personalizadas.
+  
+- - **Feedback  com nota:** Os usuários podem dar uma reação que será analizada por uma NLP de analise de sentimentos com a lib TextBlob do python.
 
 ## Como Executar
 
