@@ -1,4 +1,4 @@
-const { OptionTrading } = require('./app');
+const { OptionTrading } = require('./app.js');
 
 describe('Option Trading System', () => {
     let trading;
@@ -35,6 +35,8 @@ describe('Option Trading System', () => {
     });
 
     test('should execute a call option', () => {
+        const trading = new OptionTrading();
+        trading.createOption('call', 50000, 10, 1000, new Date('2023-12-31'));
         const currentPrice = 55000;
         trading.buyOption(1, 5);
         trading.executeOption(1, currentPrice);
