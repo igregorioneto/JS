@@ -3,30 +3,32 @@ class Poll {
         this.id = id;
         this.question = question;
         this.options = options;
-        this.votes = new Map();
+        this.votes = new Map(options.map(option => [option, []]));
     }
 
     vote(optionIndex, userId) {
         // Implemente a lógica para registrar o voto de um usuário para uma opção específica
-        this.votes.set(this.options[optionIndex], userId);
+        const option = this.options[optionIndex];
+        if (this.votes.has(option)) {
+            this.votes.get(option).push(userId);
+        }
     }
 
     getTotalVotes() {
         // Implemente a lógica para retornar o número total de votos em todas as opções
-        console.log(this.votes.size())
-        return this.votes.size();
+        let totalVotes = 0;
+        for (const votesArray of this.votes.values()) {
+            totalVotes += votesArray.length;
+        }
+        return totalVotes;
     }
 
     getVotesPerOption() {
         // Implemente a lógica para retornar um mapa com o número de votos para cada opção
         let result = new Map();
-        for (const option of this.options) {
-            if (!result.has(option)) {
-                result.set(option, 1);
-            } else {
-                result.set(option, result.get(option) + 1);
-            }
-        }
+        this.votes.forEach((votesArray, option) => {
+            result.set(option, votesArray.length)
+        })
         return result;
     }
 

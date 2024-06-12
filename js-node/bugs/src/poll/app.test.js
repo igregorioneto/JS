@@ -1,4 +1,4 @@
-const { PollingApp } = require('./app.js');
+const { PollingApp } = require('./app');
 
 describe('Poll App System', () => {
     test('should register a vote for a specific option', () => {
