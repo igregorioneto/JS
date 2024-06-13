@@ -34,6 +34,13 @@ class Poll {
 
     getVotePercentage(optionIndex) {
         // Implemente a lógica para retornar a porcentagem de votos para uma opção específica
+        const option = this.options[optionIndex];
+        let qtdOptionsVotes = 0;
+        if (this.votes.has(option)) {
+            qtdOptionsVotes++;
+        }
+        console.log(qtdOptionsVotes)
+        return parseFloat(((2 * 100) / this.getTotalVotes()).toFixed(2));
     }
 }
 
