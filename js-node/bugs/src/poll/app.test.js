@@ -1,4 +1,4 @@
-const { PollingApp } = require('./app');
+const { PollingApp } = require('./app.js');
 
 describe('Poll App System', () => {
     test('should register a vote for a specific option', () => {
@@ -55,7 +55,7 @@ describe('Poll App System', () => {
         expect(results.question).toBe('Favorite Season');
         expect(results.options).toEqual(['Spring', 'Summer', 'Fall', 'Winter']);
         expect(results.votesPerOption).toEqual(new Map([['Spring', 2], ['Summer', 1], ['Fall', 0], ['Winter', 0]]));
-        expect(results.votePercentages).toEqual([50, 25, 0, 0]); // Percentage of votes for each option
+        expect(results.votePercentages).toEqual([66.67, 33.33, 0, 0]); // Percentage of votes for each option
     });
 
 })

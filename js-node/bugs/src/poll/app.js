@@ -35,12 +35,8 @@ class Poll {
     getVotePercentage(optionIndex) {
         // Implemente a lógica para retornar a porcentagem de votos para uma opção específica
         const option = this.options[optionIndex];
-        let qtdOptionsVotes = 0;
-        if (this.votes.has(option)) {
-            qtdOptionsVotes++;
-        }
-        console.log(qtdOptionsVotes)
-        return parseFloat(((2 * 100) / this.getTotalVotes()).toFixed(2));
+        let qtdOptionsVotes = this.votes.get(option).length;
+        return parseFloat(((qtdOptionsVotes * 100) / this.getTotalVotes()).toFixed(2));
     }
 }
 
@@ -75,6 +71,18 @@ class PollingApp {
 
     listPollResults(pollId) {
         // Implemente a lógica para listar os resultados de uma enquete específica
+        const poll = this.polls.find(p => p.id === pollId);
+        let total = poll.options.length
+        const votesPerOption = poll.getVotesPerOption();
+        
+        const votePercentages = poll.options.map((option, index) => poll.getVotePercentage(index));
+        
+        return {
+            question: poll.question,
+            options: poll.options,
+            votesPerOption,
+            votePercentages
+        }
     }
 }
 
