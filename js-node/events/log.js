@@ -1,17 +1,30 @@
 const EventEmitter = require('events')
 const fs = require('fs')
 const http = require('http')
+const url = require('url')
 const { Writable } = require('stream')
 
 class Logger extends EventEmitter {
-    log (message) {
+    log(message) {
         this.emit('log', message)
-    }    
+    }
+
+    logInfo(message) {
+        this.emit('logInfo', message)
+    }
+
+    logWarn(message) {
+        this.emit('logWarn', message)
+    }
+
+    logError(message) {
+        this.emit('logError', message)
+    }
 }
 
 class LoggerStream extends Writable {
     constructor(options) {
-        super(options)        
+        super(options)
         this.fileStream = fs.createWriteStream('./log.txt', { flags: 'a' })
         this.readStream = fs.createReadStream('./log.txt', 'utf8');
     }
@@ -22,12 +35,12 @@ class LoggerStream extends Writable {
         })
     }
 
-    write(value, encoding, callback) {        
+    write(value, encoding, callback) {
         this.fileStream.write(value, encoding, callback)
     }
 }
 
-;(() => {
+; (() => {
     const logger = new Logger()
     const loggerStream = new LoggerStream()
 
@@ -37,12 +50,37 @@ class LoggerStream extends Writable {
         loggerStream.write(buffer)
     })
 
-    const server = http.createServer((req, res) => {
-        const logMessage = `Requisição recebida: ${req.method} ${req.url} em ${new Date().toString()}`
-        logger.log(logMessage)
+    logger.on('logInfo', (message) => {
+        const buffer = Buffer.from('INFO: ' + message + '\n', 'utf8')
+        loggerStream.write(buffer)
+    })
 
-        res.writeHead(200, { 'Content-Type': 'text/plain' })
-        res.end('Olá, Mundo\n')
+    logger.on('logWarn', (message) => {
+        const buffer = Buffer.from('WARN: ' + message + '\n', 'utf8')
+        loggerStream.write(buffer)
+    })
+
+    logger.on('logError', (message) => {
+        const buffer = Buffer.from('ERROR: ' + message + '\n', 'utf8')
+        loggerStream.write(buffer)
+    })
+
+    const server = http.createServer((req, res) => {
+        const parseUrl = url.parse(req.url, true)
+        const { filter } = parseUrl.query;
+        const logMessage = `Requisição recebida: ${req.method} ${req.url} em ${new Date().toString()}`
+        try {         
+            if (filter === undefined) {
+                logger.logWarn(logMessage)
+            } else {
+                logger.logInfo(logMessage)
+            }
+
+            res.writeHead(200, { 'Content-Type': 'text/plain' })            
+            res.end('Olá, Mundo\n')
+        } catch (error) {
+            logger.logError(logMessage + error)
+        }
     })
 
     server.listen(3000, () => {
