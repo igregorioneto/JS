@@ -39,3 +39,13 @@ test("Não deve validar o CPF (Abaixo do limite)", function() {
     const isValid = before.validate("123.456.789");
     expect(isValid).toBeFalsy();
 })
+
+test("Não deve validar o CPF (Valor null)", function() {
+    const isValid = before.validate(null);
+    expect(isValid).toBeFalsy();
+})
+
+test("Não deve validar o CPF (Valor undefined)", function() {
+    const isValid = before.validate(undefined);
+    expect(isValid).toBeFalsy();
+})
