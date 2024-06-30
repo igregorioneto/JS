@@ -6,30 +6,14 @@ function validate(cpfEntrada) {
         cpfEntrada = transformandoCPFemArray(cpfEntrada);
         if (validandoTodosOsValoresSaoIguais(cpfEntrada)) return false;
         try {
-            let d1, d2;
-            let dg1, dg2, rest;
-            let digito;
-            let nDigResult;
-            d1 = d2 = 0;
-            dg1 = dg2 = rest = 0;
+            let primeiroDigito = 0, segundoDigito = 0;
+            primeiroDigito = calculoDosDigitos(cpfEntrada, primeiroDigito, 11);
+            segundoDigito = calculoDosDigitos(cpfEntrada, segundoDigito, 12);
 
-            for (let nCount = 1; nCount < cpfEntrada.length - 1; nCount++) {
-                digito = parseInt(cpfEntrada.substring(nCount - 1, nCount));
-                d1 = d1 + (11 - nCount) * digito;
-                d2 = d2 + (12 - nCount) * digito;
-            };
-
-            rest = (d1 % 11);
-            dg1 = (rest < 2) ? dg1 = 0 : 11 - rest;
-            d2 += 2 * dg1;
-            rest = (d2 % 11);
-            if (rest < 2)
-                dg2 = 0;
-            else
-                dg2 = 11 - rest;
-            let nDigVerific = cpfEntrada.substring(cpfEntrada.length - 2, cpfEntrada.length);
-            nDigResult = "" + dg1 + "" + dg2;
-            return nDigVerific == nDigResult;
+            primeiroDigito = calculoRestoDivisaoDigitoVerificador(primeiroDigito);
+            segundoDigito += 2 * primeiroDigito;
+            segundoDigito = calculoRestoDivisaoDigitoVerificador(segundoDigito);
+            return digitosVerificadores(cpfEntrada) == resultadoDosDigitos(primeiroDigito, segundoDigito);
         } catch (e) {
             console.error("Erro ao validar CPF: " + e);
             return false;
@@ -41,6 +25,16 @@ function validate(cpfEntrada) {
 
 const validandoTodosOsValoresSaoIguais = (cpf) => cpf.split("").every(c => c === cpf[0]);
 const transformandoCPFemArray = (cpf) => cpf.replaceAll(/[.-]/g, '').trim()
+const calculoDosDigitos = (cpf, digitoResultado, valorReferencia) => {
+    for (let contador = 1; contador < cpf.length - 1; contador++) {
+        digito = parseInt(cpf.substring(contador - 1, contador));
+        digitoResultado = digitoResultado + (valorReferencia - contador) * digito;
+    };
+    return digitoResultado;
+}
+const digitosVerificadores = (cpf) => cpf.substring(cpf.length - 2, cpf.length);
+const resultadoDosDigitos = (primeiroDigito, segundoDigito) => primeiroDigito +''+ segundoDigito;
+const calculoRestoDivisaoDigitoVerificador = (digito) => (digito % 11) < 2 ? 0 : 11 - (digito % 11);
 
 module.exports = {
     validate
