@@ -1,45 +1,62 @@
 function calculateEmployeeSalary(employee) {
-    // Calcular salário base
-    let baseSalary = employee.baseSalary;
-    
-    // Calcular bônus por desempenho
-    let performanceBonus = 0;
-    if (employee.performance === 'excellent') {
-        performanceBonus = baseSalary * 0.2;
-    } else if (employee.performance === 'good') {
-        performanceBonus = baseSalary * 0.1;
-    }
-
-    // Calcular bônus por tempo de serviço
-    let tenureBonus = 0;
-    if (employee.yearsWorked > 5) {
-        tenureBonus = baseSalary * 0.05;
-    }
-
-    // Calcular deduções
-    let deductions = 0;
-    if (employee.absences > 2) {
-        deductions = baseSalary * 0.03 * (employee.absences - 2);
-    }
-
-    // Calcular dedução de imposto
-    let taxDeduction = 0;
-    if (employee.taxBracket === 'high') {
-        taxDeduction = baseSalary * 0.3;
-    } else if (employee.taxBracket === 'medium') {
-        taxDeduction = baseSalary * 0.2;
-    } else if (employee.taxBracket === 'low') {
-        taxDeduction = baseSalary * 0.1;
-    }
-
-    // Calcular salário final
+    const baseSalary = employee.baseSalary;
+    const performanceBonus = calculatePerformanceBonus(baseSalary, employee.performance);
+    const tenureBonus = calculateTenureBonus(baseSalary, employee.yearsWorked);
+    const deductions = calculateDeductions(baseSalary, employee.absences)
+    const taxDeduction = calculateTaxDeduction(baseSalary, employee.taxBracket);    
     let finalSalary = baseSalary + performanceBonus + tenureBonus - deductions - taxDeduction;
 
-    // Verificar se o salário final é menor que o salário mínimo
     const MINIMUM_WAGE = 1500;
     if (finalSalary < MINIMUM_WAGE) {
         finalSalary = MINIMUM_WAGE;
     }
-
     return finalSalary;
+}
+
+// Calcular bônus por desempenho
+function calculatePerformanceBonus(baseSalary, performance) {
+    if (performance === 'excellent') {
+        return baseSalary * 0.2;
+    } else if (performance === 'good') {
+        return baseSalary * 0.1;
+    }
+    return baseSalary;
+}
+
+// Calcular bônus por tempo de serviço
+function calculateTenureBonus(baseSalary, yearsWorked) {
+    if (yearsWorked > 5) {
+        return baseSalary * 0.05;
+    }
+    return 0;
+}
+
+// Calcular deduções
+function calculateDeductions(baseSalary, absences) {
+    if (absences > 2) {
+        return baseSalary * 0.03 * (absences - 2);
+    }
+    return 0;
+}
+
+// Calcular dedução de imposto
+function calculateTaxDeduction(baseSalary, taxBracket) {
+    switch (taxBracket) {
+        case 'high':
+            return baseSalary * 0.3;
+        case 'medium':
+            return baseSalary * 0.2;
+        case 'low':
+            return baseSalary * 0.1;
+        default:
+            return 0;
+    }
+}
+
+module.exports = {
+    calculateEmployeeSalary,
+    calculatePerformanceBonus,
+    calculateTenureBonus,
+    calculateDeductions,
+    calculateTaxDeduction
 }

@@ -26,7 +26,7 @@ describe('Employee Salary Calculation', () => {
             taxBracket: 'medium'
         };
         const finalSalary = calculateEmployeeSalary(employee);
-        expect(finalSalary).toBe(/* Valor esperado */);
+        expect(finalSalary).toBe(1840);
     });
 
     test('should set salary to minimum wage if below minimum', () => {
