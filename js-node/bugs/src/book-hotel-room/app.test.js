@@ -1,4 +1,4 @@
-const { bookHotelRoom } = require('./before');
+const { bookHotelRoom } = require('./after');
 
 describe('Hotel Booking System', () => {
     test('should check room availability correctly', () => {
@@ -7,14 +7,35 @@ describe('Hotel Booking System', () => {
 
     test('should calculate total price correctly', () => {
         // Teste para a função calculateTotalPrice
+        const reservation = {
+            roomType: 'double',
+            customerName: 'John Doe',
+            nights: 6
+        };
+        const booking = bookHotelRoom(reservation);
+        expect(booking.totalPrice).toEqual(891);
     });
 
     test('should apply discount correctly', () => {
         // Teste para a função applyDiscount
+        const reservation = {
+            roomType: 'double',
+            customerName: 'John Doe',
+            nights: 8
+        };
+        const booking = bookHotelRoom(reservation);
+        expect(booking.totalPrice).toEqual(1188);
     });
 
     test('should calculate tax correctly', () => {
         // Teste para a função calculateTax
+        const reservation = {
+            roomType: 'double',
+            customerName: 'John Doe',
+            nights: 8
+        };
+        const booking = bookHotelRoom(reservation);
+        expect(booking.totalPrice).toEqual(1188);
     });
 
     test('should create booking correctly', () => {
