@@ -1,45 +1,63 @@
-const { bookHotelRoom } = require('./after');
+const { bookHotelRoom, applyDiscount, calculateTax, calculateTotalPrice, checkRoomAvailability, createBooking } = require('./after');
 
 describe('Hotel Booking System', () => {
+    
+    const rooms = [
+        { number: 101, type: 'single', price: 100 },
+        { number: 102, type: 'double', price: 150 },
+        { number: 103, type: 'suite', price: 200 }
+    ];
+
     test('should check room availability correctly', () => {
-        // Teste para a função checkRoomAvailability
+        const roomType = 'double';
+        const availableRoom = checkRoomAvailability(rooms, roomType);
+        expect(availableRoom).toEqual({ number: 102, type: 'double', price: 150 });
+    });
+
+    test('should throw error if room type is not available', () => {
+        const roomType = 'penthouse';
+        expect(() => checkRoomAvailability(rooms, roomType)).toThrow('Room type not available');
     });
 
     test('should calculate total price correctly', () => {
-        // Teste para a função calculateTotalPrice
-        const reservation = {
-            roomType: 'double',
-            customerName: 'John Doe',
-            nights: 6
-        };
-        const booking = bookHotelRoom(reservation);
-        expect(booking.totalPrice).toEqual(891);
+        const pricePerNight = 100;
+        const nights = 3;
+        const totalPrice = calculateTotalPrice(pricePerNight, nights);
+        expect(totalPrice).toBe(300);
     });
 
     test('should apply discount correctly', () => {
-        // Teste para a função applyDiscount
-        const reservation = {
-            roomType: 'double',
-            customerName: 'John Doe',
-            nights: 8
-        };
-        const booking = bookHotelRoom(reservation);
-        expect(booking.totalPrice).toEqual(1188);
+        const totalPrice = 600;
+        const nights = 6;
+        const discountedPrice = applyDiscount(totalPrice, nights);
+        expect(discountedPrice).toBe(540); 
+    });
+
+    test('should not apply discount for short stays', () => {
+        const totalPrice = 300;
+        const nights = 3;
+        const discountedPrice = applyDiscount(totalPrice, nights);
+        expect(discountedPrice).toBe(300); 
     });
 
     test('should calculate tax correctly', () => {
-        // Teste para a função calculateTax
-        const reservation = {
-            roomType: 'double',
-            customerName: 'John Doe',
-            nights: 8
-        };
-        const booking = bookHotelRoom(reservation);
-        expect(booking.totalPrice).toEqual(1188);
+        const totalPrice = 300;
+        const tax = calculateTax(totalPrice);
+        expect(tax).toBe(30);
     });
 
     test('should create booking correctly', () => {
-        // Teste para a função createBooking
+        const roomNumber = 101;
+        const customerName = 'John Doe';
+        const nights = 3;
+        const finalPrice = 330;
+        const booking = createBooking(roomNumber, customerName, nights, finalPrice);
+        expect(booking).toEqual({
+            roomNumber: 101,
+            customerName: 'John Doe',
+            nights: 3,
+            totalPrice: 330
+        });
     });
 
     test('should book a hotel room correctly', () => {
@@ -55,14 +73,5 @@ describe('Hotel Booking System', () => {
             nights: 6,
             totalPrice: 891
         });
-    });
-
-    test('should throw error if room type is not available', () => {
-        const reservation = {
-            roomType: 'penthouse',
-            customerName: 'Jane Doe',
-            nights: 2
-        };
-        expect(() => bookHotelRoom(reservation)).toThrow('Room type not available');
     });
 });
