@@ -11,13 +11,16 @@ class MedicalScheduler {
 
     registerPatient(name, age, contactInfo) {
         // Implementar lógica para registrar um novo paciente
-        const paciente = new Patient(1, name, age, contactInfo);
+        const paciente = new Patient(this.patients.length + 1, name, age, contactInfo);
         this.patients.push(paciente);
         return paciente;
     }
 
     registerDoctor(name, specialty, availability) {
         // Implementar lógica para registrar um novo médico
+        const doctor = new Doctor(this.doctors.length + 1, name, specialty, availability);
+        this.doctors.push(doctor);
+        return doctor;
     }
 
     scheduleAppointment(patientId, doctorId, dateTime) {

@@ -1,3 +1,4 @@
+const Doctor = require("./doctor");
 const MedicalScheduler = require("./medicalScheduler");
 const Patient = require("./patient");
 
@@ -12,4 +13,12 @@ test('Registro de um Paciente', function () {
     expect(patient.name).toBe(result.name);
     expect(patient.age).toBe(result.age);
     expect(patient.contactInfo).toBe(result.contactInfo);
+});
+
+test('Registro de um Médico', function () {    
+    const result = new Doctor(1, 'Larissa', 'Clinica Geral', ['07:00', '10:00', '14:00']);    
+    const doctor = medicalScheduler.registerDoctor('Larissa', 'Clinica Geral', ['07:00', '10:00', '14:00']);
+    expect(doctor.name).toBe(result.name);
+    expect(doctor.specialty).toBe(result.specialty);
+    expect(doctor.availability).toEqual(result.availability);
 });
