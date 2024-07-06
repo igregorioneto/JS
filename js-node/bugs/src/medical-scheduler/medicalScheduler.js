@@ -11,6 +11,9 @@ class MedicalScheduler {
 
     registerPatient(name, age, contactInfo) {
         // Implementar lógica para registrar um novo paciente
+        const paciente = new Patient(1, name, age, contactInfo);
+        this.patients.push(paciente);
+        return paciente;
     }
 
     registerDoctor(name, specialty, availability) {
