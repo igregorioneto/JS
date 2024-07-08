@@ -22,3 +22,15 @@ test('Registro de um Médico', function () {
     expect(doctor.specialty).toBe(result.specialty);
     expect(doctor.availability).toEqual(result.availability);
 });
+
+test('Agendamento de consulta', function () {    
+});
+
+test('Cancelar consulta', function () {    
+});
+
+test('Relatório de consultas agendadas', function () {    
+});
+
+test('Simular o envio de notificações', function () {    
+});
