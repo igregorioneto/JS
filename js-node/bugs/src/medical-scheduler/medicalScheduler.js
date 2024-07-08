@@ -25,10 +25,20 @@ class MedicalScheduler {
 
     scheduleAppointment(patientId, doctorId, dateTime) {
         // Implementar lógica para agendar uma consulta
+        const appointment = new Appointment(this.appointments.length + 1, patientId, doctorId, dateTime);
+        this.appointments.push(appointment);
+        return appointment;
     }
 
     cancelAppointment(appointmentId) {
         // Implementar lógica para cancelar uma consulta
+        const index = this.appointments.findIndex(app => app.id === appointmentId);
+        console.log(appointmentId)
+        if (index !== -1) {
+            const [cancelAppointment] = this.appointments.splice(index, 1);
+            return cancelAppointment;
+        }
+        return null;
     }
 
     generateReport(startDate, endDate) {

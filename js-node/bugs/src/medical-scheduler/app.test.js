@@ -1,3 +1,4 @@
+const Appointment = require("./appointment");
 const Doctor = require("./doctor");
 const MedicalScheduler = require("./medicalScheduler");
 const Patient = require("./patient");
@@ -24,9 +25,22 @@ test('Registro de um Médico', function () {
 });
 
 test('Agendamento de consulta', function () {    
+    const patient = medicalScheduler.registerPatient('João', 70, '8499999999');
+    const doctor = medicalScheduler.registerDoctor('Larissa', 'Clinica Geral', ['07:00', '10:00', '14:00']);
+    const appointment = medicalScheduler.scheduleAppointment(patient.id, doctor.id, new Date());
+    expect(appointment.patientId).toBe(patient.id);
+    expect(appointment.doctorId).toBe(doctor.id);
+    expect(appointment.dateTime).toBeInstanceOf(Date);
 });
 
-test('Cancelar consulta', function () {    
+test('Cancelar consulta', function () {   
+    const patient = medicalScheduler.registerPatient('João', 70, '8499999999');
+    const doctor = medicalScheduler.registerDoctor('Larissa', 'Clinica Geral', ['07:00', '10:00', '14:00']);
+    const appointment = medicalScheduler.scheduleAppointment(patient.id, doctor.id, new Date());
+    const cancelAppointment = medicalScheduler.cancelAppointment(appointment.id);
+    expect(cancelAppointment).toBeDefined();
+    expect(cancelAppointment.id).toBe(appointment.id);
+    expect(medicalScheduler.appointments).not.toContainEqual(cancelAppointment);
 });
 
 test('Relatório de consultas agendadas', function () {    
