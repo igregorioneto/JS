@@ -44,7 +44,24 @@ test('Cancelar consulta', function () {
 });
 
 test('Relatório de consultas agendadas', function () {    
+    const patient = medicalScheduler.registerPatient('João', 70, '8499999999');
+    const patient2 = medicalScheduler.registerPatient('Maria', 30, '8498888888');
+    const doctor = medicalScheduler.registerDoctor('Larissa', 'Clinica Geral', ['07:00', '10:00', '14:00']);
+    const date1 = new Date();
+    const date2 = new Date(date1.getTime() + 24 * 60 * 60 * 1000);
+    medicalScheduler.scheduleAppointment(patient.id, doctor.id, date1);
+    medicalScheduler.scheduleAppointment(patient2.id, doctor.id, date2);
+
+    const report = medicalScheduler.generateReport(date1, date2);
+    expect(report).toBeDefined();
+    expect(report.length).toBe(2);
+    expect(report[0].id).toBe(patient.id);
+    expect(report[1].id).toBe(patient2.id);
 });
 
 test('Simular o envio de notificações', function () {    
+    const sendNotification = jest.spyOn(medicalScheduler, 'sendNotification');
+    const patient = medicalScheduler.registerPatient('João', 70, '8499999999');
+    medicalScheduler.sendNotification('appointment', patient.id, 'Consulta agendada!');
+    expect(sendNotification).toHaveBeenCalledWith('appointment', patient.id, 'Consulta agendada!');
 });

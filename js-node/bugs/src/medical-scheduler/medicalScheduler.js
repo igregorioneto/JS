@@ -33,7 +33,6 @@ class MedicalScheduler {
     cancelAppointment(appointmentId) {
         // Implementar lógica para cancelar uma consulta
         const index = this.appointments.findIndex(app => app.id === appointmentId);
-        console.log(appointmentId)
         if (index !== -1) {
             const [cancelAppointment] = this.appointments.splice(index, 1);
             return cancelAppointment;
@@ -43,10 +42,12 @@ class MedicalScheduler {
 
     generateReport(startDate, endDate) {
         // Implementar lógica para gerar um relatório de consultas agendadas
+        return this.appointments.filter(app => app.dateTime >= startDate && app.dateTime <= endDate);
     }
 
     sendNotification(type, recipientId, message) {
         // Implementar lógica para simular o envio de notificações
+        console.log(`Notification sent to ${recipientId}: ${message}`);
     }
 }
 
