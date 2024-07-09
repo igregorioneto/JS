@@ -12,5 +12,6 @@ beforeEach(function () {
 test('Deve iniciar o jogo com o estado corredo do tabuleiro', function() {
     // Verificar se o tabuleiro foi iniciado corretamente
     const initialBoardState = chessGame.getBoardState();
-    expect(initialBoardState).toBe(64);
+    expect(initialBoardState.rows).toBe(8);
+    expect(initialBoardState.cols).toBe(8);
 })
