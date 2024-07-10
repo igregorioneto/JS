@@ -1,4 +1,5 @@
 const { ChessGame } = require("./chessGame");
+const { ChessPiece } = require("./chessPiece");
 const { Player } = require("./player");
 
 let chessGame;
@@ -14,4 +15,10 @@ test('Deve iniciar o jogo com o estado corredo do tabuleiro', function() {
     const initialBoardState = chessGame.getBoardState();
     expect(initialBoardState.rows).toBe(8);
     expect(initialBoardState.cols).toBe(8);
+})
+
+test('Deve mover um Peão uma casa a cima', function() {
+    // Verificar se o tabuleiro foi iniciado corretamente
+    const peao = new ChessPiece();
+    
 })
