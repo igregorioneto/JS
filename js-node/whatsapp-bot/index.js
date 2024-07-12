@@ -28,9 +28,10 @@ client.on('ready', () => {
 });
 
 client.on('message', (message) => {
+    console.log(message.body)
     if (message.body.startsWith('!ping')) {
         message.reply('pong');
-        client.sendMessage(message.from, 'pong');
+        client.sendMessage(message.from, 'Olá!');
     }
 });
 
