@@ -1,0 +1,11 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  getChats: String!
+}
+
+type Mutation {
+  sendMessage(message: String!, to: String!): String!
+}
