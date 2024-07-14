@@ -44,10 +44,7 @@ function chatBotMessage(client, message) {
 }
 function helloPeople(message) {
     const hello = ['oi', 'olá', 'ola', 'bom dia', 'boa tarde', 'boa noite'];
-    const existsMessageHello = hello.some(phase => message.includes(phase));
-    if (existsMessageHello)
-        return true;
-    return false;
+    return hello.some(phase => message.includes(phase));
 }
 // Função para formatar e exibir mensagens
 function displayMessage(chatName, messageBody) {
