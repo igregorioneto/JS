@@ -7,6 +7,13 @@ var number = function (array) {
     return result;
 }
 
+var numberRefactoring = function (array) {
+    return array.map((line, index) => {
+        return `${index + 1}: ${line}`;
+    })
+}
+
 ;(() => {
     console.log(number(["a", "b", "c"]))
+    console.log(numberRefactoring(["a", "b", "c"]))
 })();
