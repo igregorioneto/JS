@@ -3,12 +3,22 @@ import { WhatsappService } from './whatsapp.service';
 
 @Resolver()
 export class WhatsappResolver {
-    constructor(private readonly whatsappService: WhatsappService) {}
+    constructor(private readonly whatsappService: WhatsappService) { }
 
     @Query(() => String)
     async getChats(): Promise<string> {
         await this.whatsappService.getChats();
         return 'Chats carregados';
+    }
+
+    @Query(() => String, { nullable: true })
+    async getQrCodeImage(): Promise<string | null> {
+        return this.whatsappService.getQRCodeImageUrl();
+    }
+
+    @Query(() => String, { nullable: true })
+    async getQrCodeText(): Promise<string | null> {
+        return this.whatsappService.getQRCodeText();
     }
 
     @Mutation(() => String)

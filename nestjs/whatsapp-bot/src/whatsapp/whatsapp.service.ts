@@ -1,10 +1,13 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Client, LocalAuth } from 'whatsapp-web.js';
-import * as qrcode from 'qrcode-terminal';
+import * as qrcodeTerminal from 'qrcode-terminal';
+import * as qrcode from 'qrcode';
 
 @Injectable()
 export class WhatsappService implements OnModuleInit {
   private client: Client;
+  private qrCodeText: string | null = null;
+  private qrCodeImageUrl: string | null = null;
 
   onModuleInit() {
     this.initializeClient();
@@ -27,7 +30,21 @@ export class WhatsappService implements OnModuleInit {
 
     this.client.on('qr', (qr) => {
       console.log('QR Code gerado. Escaneie o código abaixo com o WhatsApp:');
-      qrcode.generate(qr, { small: true });
+      // Gerar o QR Code como texto para o terminal
+      qrcodeTerminal.generate(qr, { small: true }, (text) => {
+        this.qrCodeText = text;
+        console.log(text);
+      });
+
+      // Gerar o QR Code como imagem base64
+      qrcode.toDataURL(qr, (err, url) => {
+        if (err) {
+          console.error('Erro ao gerar QR Code como imagem:', err);
+        } else {
+          this.qrCodeImageUrl = url;
+        }
+      });
+
     });
 
     this.client.on('ready', async () => {
@@ -45,6 +62,14 @@ export class WhatsappService implements OnModuleInit {
     });
 
     this.client.initialize();
+  }
+
+  getQRCodeText(): string | null {
+    return this.qrCodeText;
+  }
+
+  getQRCodeImageUrl(): string | null {
+    return this.qrCodeImageUrl;
   }
 
   sendMessage(message: string, to: string) {
@@ -81,7 +106,7 @@ export class WhatsappService implements OnModuleInit {
   }
 
   helloPeople(messageBody: string): boolean {
-    const hello = ['oi', 'olá', 'ola', 'bom dia', 'boa tarde', 'boa noite'];
+    const hello = ['!oi', '!olá', '!ola', '!bom dia', '!boa tarde', '!boa noite'];
     return hello.some((phrase) => messageBody.includes(phrase));
   }
 }

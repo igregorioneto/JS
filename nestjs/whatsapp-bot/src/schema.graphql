@@ -4,6 +4,8 @@
 
 type Query {
   getChats: String!
+  getQrCodeImage: String
+  getQrCodeText: String
 }
 
 type Mutation {
