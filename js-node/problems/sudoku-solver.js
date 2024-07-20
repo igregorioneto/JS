@@ -2,31 +2,44 @@ function sudoku(puzzle) {
     let isRunning = true;
     while(isRunning) {
         let nums = [1,2,3,4,5,6,7,8,9]
-        let numsPuzzle = []
+        let numsPuzzleRows = Array.from({ length: 9 }, () => [])
+        let numsPuzzleCols = Array.from({ length: 9 }, () => [])
+        // Separando as linhas das colunas
         for (let row = 0; row < puzzle.length; row++) {
-            let nums = []
+            let numsRow = []
             for(let value of puzzle[row]) {
                 if (value !== 0) 
-                    nums.push(value)
+                    numsRow.push(value)
             }
-            numsPuzzle.push(nums)
+            numsPuzzleRows.push(numsRow)            
+        }
+        // Criando o separador das colunas
+        for (let col = 0; col < puzzle.length; col++) {
+            let numsCol = [];
+            for (let row = 0; row < puzzle.length; row++) {
+                 const valueCol = puzzle[row][col]   
+                 if (valueCol !== 0)
+                    numsCol.push(valueCol);               
+            }
+            numsPuzzleCols.push(numsCol)
         }
 
+        // Atualizando o Puzzle
         for (let row = 0; row < puzzle.length; row++) {
             for (let col = 0; col < puzzle.length; col++) {
                 if (puzzle[row][col] === 0) {
                     for (const num of nums) {
-                        if (!numsPuzzle[row].includes(num)) {
+                        if (!numsPuzzleRows[row].includes(num) && !numsPuzzleCols[col].includes(num)) {
                             puzzle[row][col] = num;
-                            numsPuzzle[row].push(num);
+                            numsPuzzleRows[row].push(num);
+                            numsPuzzleCols[col].push(num);
                             break;
                         }
                     }
                 }                
             }
         }
-        isRunning = false;
-        console.log(numsPuzzle)
+        isRunning = puzzle.flat().includes(0);
         console.log(puzzle)
     }
     //return puzzle;
