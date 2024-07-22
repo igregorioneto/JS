@@ -1,27 +1,22 @@
 function sudoku(puzzle) {
     let isRunning = true;
-    while(isRunning) {
-        let nums = [1,2,3,4,5,6,7,8,9]
-        let numsPuzzleRows = Array.from({ length: 9 }, () => [])
-        let numsPuzzleCols = Array.from({ length: 9 }, () => [])
-        // Separando as linhas das colunas
+    while (isRunning) {
+        let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let numsPuzzleRows = Array.from({ length: 9 }, () => []);
+        let numsPuzzleCols = Array.from({ length: 9 }, () => []);
+        let subgrids = Array.from({ length: 9 }, () => []);
+
+        // Separando as linhas e colunas
         for (let row = 0; row < puzzle.length; row++) {
-            let numsRow = []
-            for(let value of puzzle[row]) {
-                if (value !== 0) 
-                    numsRow.push(value)
+            for (let col = 0; col < puzzle.length; col++) {
+                let value = puzzle[row][col];
+                if (value !== 0) {
+                    numsPuzzleRows[row].push(value);
+                    numsPuzzleCols[col].push(value);
+                    let subgridIndex = getSubgridIndex(row, col);
+                    subgrids[subgridIndex].push(value);
+                }
             }
-            numsPuzzleRows.push(numsRow)            
-        }
-        // Criando o separador das colunas
-        for (let col = 0; col < puzzle.length; col++) {
-            let numsCol = [];
-            for (let row = 0; row < puzzle.length; row++) {
-                 const valueCol = puzzle[row][col]   
-                 if (valueCol !== 0)
-                    numsCol.push(valueCol);               
-            }
-            numsPuzzleCols.push(numsCol)
         }
 
         // Atualizando o Puzzle
@@ -29,22 +24,27 @@ function sudoku(puzzle) {
             for (let col = 0; col < puzzle.length; col++) {
                 if (puzzle[row][col] === 0) {
                     for (const num of nums) {
-                        if (!numsPuzzleRows[row].includes(num) && !numsPuzzleCols[col].includes(num)) {
+                        let subgridIndex = getSubgridIndex(row, col);
+                        if (!numsPuzzleRows[row].includes(num) && !numsPuzzleCols[col].includes(num) && !subgrids[subgridIndex].includes(num)) {
                             puzzle[row][col] = num;
                             numsPuzzleRows[row].push(num);
                             numsPuzzleCols[col].push(num);
+                            subgrids[subgridIndex].push(num);
                             break;
                         }
                     }
-                }                
+                }
             }
         }
-        isRunning = puzzle.flat().includes(0);
-        console.log(puzzle)
-    }
-    //return puzzle;
-}
 
+        isRunning = puzzle.flat().includes(0);
+    }
+    return puzzle;
+}
+// Obtendo o index da subgrid
+function getSubgridIndex(row, col) {
+    return Math.floor(row / 3) * 3 + Math.floor(col / 3);
+}
 ;(() => {
     var puzzle = [
         [5,3,0,0,7,0,0,0,0],
@@ -68,5 +68,5 @@ function sudoku(puzzle) {
         [2,8,7,4,1,9,6,3,5],
         [3,4,5,2,8,6,1,7,9]];
 
-        console.log(sudoku(puzzle));
+        console.log(sudoku(puzzle), solution);
 })()
