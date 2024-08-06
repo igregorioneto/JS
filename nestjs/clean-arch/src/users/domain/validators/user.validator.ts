@@ -1,4 +1,4 @@
-import { IsDataURI, IsDate, IsNotEmpty, IsOptional, IsString, MaxLength } from "class-validator"
+import { IsDataURI, IsDate, IsEmail, IsNotEmpty, IsOptional, IsString, MaxLength } from "class-validator"
 import { UserProps } from "../entities/user.entity"
 import { ClassValidatorFields } from "@/shared/domain/validators/class-validator.fields"
 
@@ -10,6 +10,7 @@ export class UserRules {
 
   @MaxLength(255)
   @IsString()
+  @IsEmail()
   @IsNotEmpty()
   email: string
 
