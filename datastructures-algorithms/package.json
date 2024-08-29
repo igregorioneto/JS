@@ -1,0 +1,34 @@
+{
+  "name": "javascript-datastructures-algorithms",
+  "version": "0.0.1",
+  "description": "Learning Data Structures and Algorithms",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "@types/chai": "^4.3.19",
+    "@types/mocha": "^10.0.7",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^9.1.3",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "chai": "^5.1.1",
+    "codecov": "^3.8.2",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^10.7.3",
+    "mochawesome": "^7.1.3",
+    "nyc": "^17.0.0",
+    "ts-node": "^10.9.2",
+    "tslint": "^5.20.1",
+    "typescript": "^5.5.4",
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4",
+    "yargs": "^17.7.2"
+  }
+}
