@@ -1,5 +1,5 @@
 // LIFO
-class Stack {
+export default class Stack {
   constructor() {
     this.items = [];
   }
