@@ -4,3 +4,4 @@ const stack = new Stack();
 stack.push(5);
 stack.push(8);
 console.log(stack.items);
+console.log(stack.toString());
