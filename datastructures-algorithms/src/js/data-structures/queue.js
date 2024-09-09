@@ -1,4 +1,4 @@
-class Queue {
+export class Queue {
   constructor() {
     this.count = 0;
     this.lowestCount = 0; // Manter o controle do primeiro elemento da fila
