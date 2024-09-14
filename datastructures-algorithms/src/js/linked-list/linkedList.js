@@ -1,4 +1,5 @@
 import { defaultEquals } from "./defaultEquals.js";
+import { Node } from "./linked-list-models.js";
 
 export default class LinkedList {
   constructor(equalsFn = defaultEquals) {
@@ -9,7 +10,18 @@ export default class LinkedList {
 
   // Adiciona no final da lista
   push(element) {
-
+    const node = new Node(element);
+    let current;
+    if (this.head == null) {
+      this.head = node;
+    } else {
+      current = this.head;
+      while (current.next != null) {
+        current = current.next;
+      }
+      current.next = node;
+    }
+    this.count++;
   }
 
   // Adiciona um elemento em uma posição específica
