@@ -46,7 +46,22 @@ export default class LinkedList {
 
   // Remove um item em uma posição específica
   removeAt(position) {
-
+    if (position >= 0 && position < this.count) {
+      let current = this.head;
+      if (position == 0) {
+        this.head = current.next;
+      } else {
+        let previous;
+        for (let i = 0; i < this.count; i++) {
+          previous = current;
+          current = current.next;          
+        }
+        previous.next = current.next;
+      }
+      this.count--;
+      return current.element;
+    }
+    return undefined;
   }
 
   // Verifica se a lista esta vazia
