@@ -31,7 +31,14 @@ export default class LinkedList {
 
   // Retorna o elemento em uma posição específica
   getElementAt(index) {
-
+    if (index >= 0 && index <= this.count) {
+      let current = this.head;
+      for (let i = 0; i < index && current != null; i++) {
+        current = current.next;
+      }
+      return current;
+    }
+    return undefined;
   }
 
   // Remove um elemento da lista
@@ -51,11 +58,8 @@ export default class LinkedList {
       if (position == 0) {
         this.head = current.next;
       } else {
-        let previous;
-        for (let i = 0; i < this.count; i++) {
-          previous = current;
-          current = current.next;          
-        }
+        let previous = this.getElementAt(position - 1);
+        current = previous.next;
         previous.next = current.next;
       }
       this.count--;
