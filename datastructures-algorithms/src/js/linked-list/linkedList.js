@@ -26,7 +26,22 @@ export default class LinkedList {
 
   // Adiciona um elemento em uma posição específica
   insert(element, position) {
-
+    if (position >= 0 && position <= this.count) {
+      const node = new Node(element);
+      if (position === 0) {
+        let current = this.head;
+        node.next = current;
+        this.head = node;
+      } else {
+        const previous = this.getElementAt(position);
+        const current = previous.next;
+        node.next = current;
+        previous.next = node;
+      }
+      this.count;
+      return true;
+    }
+    return false;
   }
 
   // Retorna o elemento em uma posição específica
