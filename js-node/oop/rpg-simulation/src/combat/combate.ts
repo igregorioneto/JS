@@ -1,3 +1,4 @@
+import { Arqueiro } from "../entities/arqueiro";
 import { Entidade } from "../entities/entidade";
 import { Monstro } from "../entities/monstro";
 
@@ -9,10 +10,17 @@ export class Combate {
 
     while (personagem.estaVivo() && monstro.estaVivo()) {
       console.log(`--- Turno ${this.turnoAtual} ---`);
-      personagem.atacar(monstro);
+
+      if (personagem instanceof Arqueiro) {
+        (personagem as Arqueiro).usarHabilidade(monstro);
+      } else {
+        personagem.atacar(monstro);  
+      }
+          
       if (monstro.estaVivo()) {
         monstro.atacar(personagem);
       }
+      
       this.turnoAtual++;
     }
 
