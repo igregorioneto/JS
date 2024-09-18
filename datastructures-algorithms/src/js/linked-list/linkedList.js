@@ -58,12 +58,20 @@ export default class LinkedList {
 
   // Remove um elemento da lista
   remove(element) {
-
+    const index = this.indexOf(element);
+    return this.removeAt(index);
   }
 
   // Devolve o index de um elemento da lista
   indexOf(element) {
-
+    let current = this.head;
+    for (let i = 0; i < this.count && current != null; i++) {
+      if (this.equalsFn(element, current)) {
+        return i;
+      }
+      current = current.next;
+    }
+    return -1;
   }
 
   // Remove um item em uma posição específica
@@ -85,12 +93,17 @@ export default class LinkedList {
 
   // Verifica se a lista esta vazia
   isEmpty() {
-
+    return this.size() === 0;
   }
 
   // Devolve o tamanho da lista
   size() {
+    return this.count;
+  }
 
+  // Devolve o primeiro elemento da lista
+  getHead() {
+    return this.head;
   }
 
   // Retorna a lista em forma de string
