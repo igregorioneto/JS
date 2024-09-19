@@ -1,12 +1,15 @@
+import { Item } from "../items/item";
 import { Atributos } from "./atributos.interface";
 
 export abstract class Entidade {
   nome: string;
   atributos: Atributos;
+  items: Item[];
 
   constructor(nome: string, atributos: Atributos) {
     this.nome = nome;
     this.atributos = atributos;
+    this.items = [];
   }
 
   atacar(alvo: Entidade): void {

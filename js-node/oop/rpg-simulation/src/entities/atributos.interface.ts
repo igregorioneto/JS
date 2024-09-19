@@ -4,4 +4,5 @@ export interface Atributos {
   inteligencia: number;
   vida: number;
   mana: number;
+  defesa: number;
 }
