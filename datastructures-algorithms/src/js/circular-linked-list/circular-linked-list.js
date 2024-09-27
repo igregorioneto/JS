@@ -1,5 +1,5 @@
-import { defaultEquals } from "../linked-list/defaultEquals";
-import LinkedList from "../linked-list/linkedList";
+import { defaultEquals } from "../linked-list/defaultEquals.js";
+import LinkedList from "../linked-list/linkedList.js";
 
 export class CircularLinkedList extends LinkedList {
   constructor(equalsFn = defaultEquals) {
