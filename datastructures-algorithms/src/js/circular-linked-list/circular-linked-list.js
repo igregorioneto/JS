@@ -30,4 +30,28 @@ export class CircularLinkedList extends LinkedList {
     }
     return false;
   }
+
+  removeAt(position) {
+    if (position >= 0 && position < this.count) {
+      let current = this.head;
+      if (position == 0) {
+        if (this.size() === 1) {
+          this.head = undefined;
+        } else {
+          const removed = this.head;
+          current = this.getElementAt(this.size());
+          this.head = this.head.next;
+          current.next = this.head;
+          current = removed;
+        }
+      } else {
+        const previous = this.getElementAt(position - 1);
+        current = previous.next;
+        previous.next = current.next;
+      }
+      this.count--;
+      return current.element;
+    }
+    return undefined;
+  }
 }
